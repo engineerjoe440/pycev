@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 # Gather Version Information from Python File
-with open("pycev/__init__.py", encoding="utf-8") as fh:
+with open("pycev/pycev.py", encoding="utf-8") as fh:
     file_str = fh.read()
     name = re.search('_name_ = \"(.*)\"', file_str).group(1)
     ver = re.search('_version_ = \"(.*)\"', file_str).group(1)
