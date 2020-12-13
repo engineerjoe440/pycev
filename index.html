@@ -52,10 +52,44 @@ protective electric relays, and other intelligent electronic devices, and is act
 CEV files, or Compressed EVent records, contain information relating to faults encountered on
 electrical power systems. They are especially useful in post-event-analysis and for ongoing
 system development.</p>
+<div class="section" id="core-documentation">
+<h2>Core Documentation<a class="headerlink" href="#core-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pycev.html">API Reference</a></li>
 </ul>
+</div>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p><strong>From PyPI as a Python Package</strong></p>
+<p>This information is yet to come, as <cite>pycev</cite> has yet to be published to PyPI at this time.</p>
+<p><strong>From GitHub as a Python Package</strong></p>
+<p>To install <cite>pycev</cite> from GitHub:</p>
+<ol class="arabic">
+<li><p>Download the repository as a zipped package.</p></li>
+<li><p>Unzip the repository.</p></li>
+<li><p>Open a terminal (command-prompt) and navigate to the new folder that’s been unzipped.
+(<em>Hint:</em> Use <cite>cd &lt;the-path-to-the-folder-you-unzipped-in&gt;/pycev</cite>)</p></li>
+<li><p>Use <cite>pip</cite> or <cite>python</cite> to install with the following commands, respectively:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>$&gt; pip install .</cite></p></li>
+<li><p><cite>$&gt; python setup.py install</cite></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Verify that it’s been installed by opening a Python instance and importing:</dt><dd><p><cite>&gt;&gt;&gt; import pycev</cite> If no errors arise, the package has been installed.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p><strong>From GitHub as a Standalone File</strong></p>
+<p>If you wish to use <cite>pycev</cite> as a standalone file in your Python project, you can simply
+download the <cite>pycev.py</cite> file from GitHub (you’ll want
+<a class="reference external" href="https://github.com/engineerjoe440/pycev/blob/main/pycev/pycev.py">this file</a> exactly)
+and save it wherever you need it! Then, just <cite>import pycev</cite> and away you go!</p>
+</div>
 </div>
 <div class="section" id="project-information">
 <h2>Project Information<a class="headerlink" href="#project-information" title="Permalink to this headline">¶</a></h2>
@@ -90,6 +124,10 @@ and other contact, feel free to address <a class="reference external" href="mail
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">PYCEV: SEL Compessed EVent Record Reader in Python</a><ul>
+<li><a class="reference internal" href="#core-documentation">Core Documentation</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#project-information">Project Information</a><ul>
 <li><a class="reference internal" href="#contact-info">Contact Info:</a></li>
 <li><a class="reference internal" href="#source-repository-and-package-release-pypi">Source Repository and Package Release (PyPI):</a></li>

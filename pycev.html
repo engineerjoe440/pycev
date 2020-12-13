@@ -361,16 +361,17 @@ format ‘utf-8’, for example.</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – <p>If the file cannot be located on the system
-If the file contains a header and content row pair which do not</p>
-<blockquote>
-<div><p>share an equal number of columns.</p>
-</div></blockquote>
-</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – If the file cannot be located on the system</p></li>
+<li><p><strong>ValueError</strong> – If the file contains a header and content row pair which do not
+share an equal number of columns.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Warns</dt>
-<dd class="field-even"><p><strong>UserWarning</strong> – If the uppercase-cast file extension is not “.CEV”
-If any of the CEV line-wise checksums do not evaluate successfully</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>UserWarning</strong> – If the uppercase-cast file extension is not “.CEV”</p></li>
+<li><p><strong>UserWarning</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -404,8 +405,12 @@ format ‘utf-8’, for example.</p></li>
 </dl>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Warns</dt>
-<dd class="field-odd"><p><strong>UserWarning</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the file contains a header and content row pair which do not
+share an equal number of columns.</p>
+</dd>
+<dt class="field-even">Warns</dt>
+<dd class="field-even"><p><strong>UserWarning</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p>
 </dd>
 </dl>
 </dd></dl>
