@@ -8,6 +8,29 @@ Homepage: https://github.com/engineerjoe440/pycev
 
 SEL Protocol Application Guide: https://selinc.com/api/download/5026/
 SEL Compressed ASCII (CASCII) Application Guide: https://selinc.com/api/download/5021/
+--------------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2020 Joe Stanley
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 """
 
 # Standard Imports
@@ -524,13 +547,15 @@ class Cev():
         ------
         ValueError
             If the file cannot be located on the system
+        ValueError
             If the file contains a header and content row pair which do not
-                share an equal number of columns.
+            share an equal number of columns.
         
         Warns
         -----
         UserWarning
             If the uppercase-cast file extension is not ".CEV"
+        UserWarning
             If any of the CEV line-wise checksums do not evaluate successfully
         """
         # Validate file Extension
@@ -566,6 +591,12 @@ class Cev():
         See Also
         --------
         load            : Load data from a CEV file.
+        
+        Raises
+        ------
+        ValueError
+            If the file contains a header and content row pair which do not
+            share an equal number of columns.
         
         Warns
         -----
