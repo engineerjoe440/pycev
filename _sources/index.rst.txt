@@ -64,6 +64,13 @@ Project Information
 For additional information related to this project, please refer to the links and materials
 linked below.
 
+License
+~~~~~~~
+This project (`pycev`) is distributed under the standard, MIT license. Users may download,
+modify, distribute, and use for both personal and commercial applications. There is no
+warranty, and the `pycev` project maintainer(s) may not be held liable in the terms
+specified by the MIT license. 
+
 Contact Info:
 ~~~~~~~~~~~~~
 
