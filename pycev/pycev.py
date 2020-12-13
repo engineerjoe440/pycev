@@ -149,7 +149,114 @@ def split_event_and_relay_data(data):
 # Define the Primary Class
 class Cev():
     """
+    *SEL CEV File Reader*
     
+    This class serves to provide functionality to read SEL (Schweitzer
+    Engineering Laboratories) Compressed EVent records (CEV files) and
+    grant pragmatic access to the key components of these records. The
+    methods, attributes, and properties of this class serve to expose
+    data in a manner that supports scientific analysis and allow common
+    data-science tools such as NumPy, Matplotlib, Pandas, and others to
+    conveniently interpret information. This all is in an effort to
+    support data scientists and engineers to make empowered, intelligent
+    decisions about the power systems which they are responsible for.
+    
+    Within this module, this class (`Cev`) is also aliased as CEV for
+    programming convenience, and to allow users to access the functionality
+    in a format that is consistent with their work.
+    
+    Parameters
+    ----------
+    file:       str, optional
+                String describing the relative or fully qualified path to
+                the CEV file that should be read. Optionally used during
+                class initialization, may also be loaded using the `load`
+                method.
+    data:       str, optional
+                String describing all contents of the CEV file as read.
+                Optionally used during class initialization to pre-load
+                the contents of the CEV file.
+    **kwargs:   dict, optional
+                Additional optional parameters which may be specified
+                during class initialization. Common arguments include:
+                
+                    - encoding:     str, file encoding such as 'utf-8'
+                    - decode_opt:   str, file decoding option such as
+                                    'strict', 'ignore', 'replace', or
+                                    'backslashreplace' as defined by
+                                    standard str.decode method.
+                    - ignore_warnings: bool, control to ignore warnings
+                
+                Class initialization may include one or more kwargs,
+                but none are required.
+    
+    Attributes
+    ----------
+    analog_channels:        list of list of float
+                            List of lists containing the analog samples
+                            for each channel.
+    analog_channel_ids:     list of str
+                            List of the analog channel names whose index
+                            values correspond directly to the channel
+                            datasets in `analog_channels`.
+    analog_count:           int
+                            Number of analog channels present in CEV.
+    channels_count:         int
+                            Total number of analog and digital (status)
+                            channels in CEV.
+    data:                   str
+                            Full string context of the entire CEV record;
+                            includes both the event information and relay
+                            settings that were included with the record.
+    digital_channels:       list of list of bool
+                            List of lists containing boolean states for
+                            each digital (status) channel present in CEV.
+                            This list presents itself as an alias to the
+                            `status_channels` class attribute.
+    digital_channel_ids:    list of str
+                            List of the digital (status) channel names
+                            whose index values correspond directly to the
+                            channel datasets in `digital_channels`. This
+                            list presents itself as an alias to the
+                            `status_channel_ids` class attribute.
+    digital_count:          int
+                            Number of digital channels present in the CEV.
+    fid:                    str
+                            Relay firmware identification string; does not
+                            include the 'FID=' specifier.
+    frequency:              float
+                            The recorded nominal frequency present in the
+                            CEV.
+    raw_fid:                str
+                            "Raw" relay firmware identification string;
+                            includes the 'FID=' specifier to lead the string.
+    record:                 str
+                            Event record data-sub-section contents; contains
+                            only the event-related data and heading fields of
+                            the CEV that was loaded.
+    record_lines:           list of str
+                            Row-wise split contents of the record with all
+                            newline and carriage-return characters removed.
+    settings:               str
+                            Relay settings data-sub-section contents; contains
+                            only the relay settings portion of the CEV that
+                            was loaded.
+    status_channels:        list of list of bool
+                            List of lists containing boolean states for
+                            each status (digital) channel present in CEV.
+                            This list is aliased to the `digital_channels`
+                            class attribute.
+    status_channel_ids:     list of str
+                            List of the status (digital) channel names
+                            whose index values correspond directly to the
+                            channel datasets in `status_channels`. This
+                            list is aliased to the `digital_channel_ids`
+                            class attribute.
+    status_count:           int
+                            Number of status channels present in the CEV.
+    trigger_time:           datetime
+                            Date-time structure indicating when the event
+                            was "triggered" by protection logic in the relay.
     """
     
     def __init__(self, file=None, data=None, **kwargs):
@@ -183,6 +290,7 @@ class Cev():
         self.settings = ''
         self.record_lines = []
         self.fid = ''
+        self.raw_fid = ''
         self.trigger_time = dt.datetime(1970, 1, 1) # Default to Epoch
         self.channels_count = 0
         self.analog_channels = []
@@ -201,10 +309,7 @@ class Cev():
 
         # Prepare Data or File if Provided
         if file is not None:
-            if not os.path.exists( file ):
-                raise ValueError("Argument `file` must be a valid file-path to a CEV file.")
-            else:
-                self.load( file=file, encoding=encoding )
+            self.load( file=file, encoding=encoding )
         elif data is not None:
             self.load_data( data=data, encoding=encoding )
     
@@ -216,6 +321,8 @@ class Cev():
     # Define Simple File Extension Validator
     def _validate_extension(self, file):
         """ Validate Extension is of *.CEV Format """
+        if not os.path.exists( file ):
+            raise ValueError("Argument `file` must be a valid file-path to a CEV file.")
         filename, ext = os.path.splitext(file)
         if 'CEV' not in ext.upper():
             # Throw Warning to User
@@ -322,7 +429,8 @@ class Cev():
             iRow += 2
         
         # Following the Primary Header Content, a Single Header Remains
-        # with the Analog and Digital Channel Names
+        # with the Analog and Digital Channel Names.
+        # Split on either a comma (',') or a space (' ')
         channels = re.split(r',| ', self.record_lines[ iRow ])
         is_analog = True # First Channel from Left is Analog
 
@@ -390,10 +498,41 @@ class Cev():
     # Define File Loader Method
     def load(self, file, encoding=None):
         """
+        *CEV File Loader Method*
         
+        Use this method to load a CEV file, and parse its contents into the
+        valuable class attributes and structure.
+    
+        Parameters
+        ----------
+        file:       str
+                    String describing the relative or fully qualified path to
+                    the CEV file that should be read. Optionally used during
+                    class initialization, may also be loaded using the `load`
+                    method.
+        encoding:   str, optional
+                    String specifying the encoding format (if required) in
+                    which the file is stored. This may be used for files of
+                    format 'utf-8', for example.
+        
+        See Also
+        --------
+        load_data       : Load data which has already been read from a file,
+                          or is presented as a stream.
+        
+        Raises
+        ------
+        ValueError
+            If the file cannot be located on the system
+            If the file contains a header and content row pair which do not
+                share an equal number of columns.
+        
+        Warns
+        -----
+        UserWarning
+            If the uppercase-cast file extension is not ".CEV"
+            If any of the CEV line-wise checksums do not evaluate successfully
         """
-        if not os.path.exists( file ):
-            raise ValueError("Argument `file` must be a valid file-path to a CEV file.")
         # Validate file Extension
         self._validate_extension(file)
         # Read File with Encoding
@@ -405,7 +544,33 @@ class Cev():
     # Define Data Loader Method
     def load_data(self, data, encoding=None):
         """
+        *CEV Data Loader Method*
         
+        Use this method to load the data from a CEV file which has already been
+        read, or data which is being streamed to the class (i.e., an active
+        connection to a relay). This method will parse the data and load the
+        class attributes and structures appropriately.
+    
+        Parameters
+        ----------
+        file:       str
+                    String describing the relative or fully qualified path to
+                    the CEV file that should be read. Optionally used during
+                    class initialization, may also be loaded using the `load`
+                    method.
+        encoding:   str, optional
+                    String specifying the encoding format (if required) in
+                    which the file is stored. This may be used for files of
+                    format 'utf-8', for example.
+        
+        See Also
+        --------
+        load            : Load data from a CEV file.
+        
+        Warns
+        -----
+        UserWarning
+            If any of the CEV line-wise checksums do not evaluate successfully
         """
         # Method is Called Internally with `data=None`, Don't Try Loading in this Case
         if data != None:
