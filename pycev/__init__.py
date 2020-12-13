@@ -22,7 +22,7 @@ from collections import namedtuple
 # Local Imports
 
 # Describe Package for External Interpretation
-_name_ = "selcev"
+_name_ = "pycev"
 _version_ = "0.0"
 __version__ = _version_  # Alias the Version String
 
