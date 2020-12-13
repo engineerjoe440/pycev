@@ -16,6 +16,7 @@ import re
 import time
 import inspect
 import warnings
+import datetime as dt
 from collections import namedtuple
 
 # Local Imports
@@ -28,11 +29,9 @@ __version__ = _version_  # Alias the Version String
 
 EVENT_SETTINGS_SEP = '"SETTINGS","02E1"'
 
-RE_ROW_CONTENTS = re.compile(r'(.*,)"(.*?)"')
-
 
 # Define Function to Evaluate Checksum
-def _eval_checksum( data, constrain=False ):
+def _eval_checksum( data, constrain=True ):
     """
     *Evaluate the expected checksum for specific data row*
 
@@ -61,7 +60,7 @@ def _eval_checksum( data, constrain=False ):
         checksum = sum(data)
     # Cap the Value if Needed
     if constrain:
-        checksum = checksum & 0xff # Bit-wise and with 8-bit maximum
+        checksum = checksum & 0xffff # Bit-wise AND with 16-bit maximum
     return checksum
 
 # Define Function to Interpret Row-Wise Checksum for Validity
@@ -97,31 +96,21 @@ def row_wise_checksum(row_data):
     # Clean Input Data
     row_data = row_data.replace('\r','')
     row_data = row_data.replace('\n','')
-    # Use RegEx to Extract Valuable Data
-    context = re.findall(RE_ROW_CONTENTS, row_data)
-    # Validate Context
-    if len(context) == 1:
-        context = context[0] # Unwrap
-        if len(context) == 2:
-            # Successfully Extracted Data
-            row_contents, checksum_str = context # Extract
-            # Evaluate Checksum as INT
-            checksum_int = int.from_bytes(  bytes.fromhex(checksum_str),
-                                            byteorder='big',
-                                            signed=True )
-            # Calculate Checksum
-            checksum = _eval_checksum(data=row_contents)
-            # Remove Trailing Comma if Present
-            if row_contents.endswith(','):
-                row_contents = row_contents[:-1] # Trim Comma
-            # Pack Structure
-            row = Row(data=row_contents, validity=(checksum==checksum_int))
-            return row
-        else:
-            raise ValueError("Failed to unwrap context from event data row.")
-    else:
-        print(row_data, context)
-        raise ValueError("Failed to locate appropriate data contents.")
+    # Successfully Extracted Data
+    row_contents = row_data[:-6] # Remove Checksum Characters
+    checksum_str = row_data[-6:].replace('"','') # Keep Checksum Only
+    # Evaluate Checksum as INT
+    checksum_int = int.from_bytes(  bytes.fromhex(checksum_str),
+                                    byteorder='big',
+                                    signed=True )
+    # Calculate Checksum
+    checksum = _eval_checksum(data=row_contents)
+    # Remove Trailing Comma if Present
+    if row_contents.endswith(','):
+        row_contents = row_contents[:-1] # Trim Comma
+    # Pack Structure
+    row = Row(data=row_contents, validity=(checksum==checksum_int))
+    return row
 
 # Define Function to Split Event Data from Relay Settings
 def split_event_and_relay_data(data):
@@ -193,6 +182,22 @@ class Cev():
         self.record = ''
         self.settings = ''
         self.record_lines = []
+        self.fid = ''
+        self.trigger_time = dt.datetime(1970, 1, 1) # Default to Epoch
+        self.channels_count = 0
+        self.analog_channels = []
+        self.analog_channel_ids = []
+        self.status_channels = []
+        self.status_channel_ids = []
+        self.digital_channels = self.status_channels # Alias the Digitals
+        self.digital_channel_ids = self.status_channel_ids # Alias the Digital Names
+        self.analog_count = 0
+        self.status_count = 0
+        self.digital_count = 0 
+        self.frequency = 0.0
+
+        self._ignored_channels = []
+        self._trig_column = -1
 
         # Prepare Data or File if Provided
         if file is not None:
@@ -202,7 +207,11 @@ class Cev():
                 self.load( file=file, encoding=encoding )
         elif data is not None:
             self.load_data( data=data, encoding=encoding )
-        
+    
+    # Define Simple Method to Identify Class Keys
+    def _keys(self):
+        """ Capture Class Attributes as Keys """
+        return self.__dict__.keys()
 
     # Define Simple File Extension Validator
     def _validate_extension(self, file):
@@ -262,6 +271,122 @@ class Cev():
         # Return the Validity Signal
         return valid
     
+    # Define Internal Test to Identify Header
+    def _is_header(self, row_data):
+        """ Simple Test Function to Evaluate Whether Row is Header """
+        if row_data.startswith('"') and row_data.endswith('"'):
+            return True
+        else:
+            return False
+    
+    # Define Internal Test to Identify Data Row
+    def _is_data(self, row_data):
+        """ Simple Test Function to Evaluate Whether Row isn't Header """
+        return not self._is_header(row_data=row_data)
+    
+    # Define Primary Parsing Function
+    def _parse_record(self):
+        """ Primary Parsing Function to Interpret the CEV """
+        # Operate on "Row-Pairs" with two Rows at Once to Pair Key with Value
+        # Start with Row-Index-Zero (first row), and Assuming Header
+        iRow = 0
+        # Only Validate the First Row, Since Second Row Should Contain FID
+        header = self._is_header(self.record_lines[iRow])
+
+        # Manage the Initial Record Data
+        while header:
+            # Clean and Split the Heading and Content
+            heading_row = self.record_lines[ iRow ].replace('"','').split(',')
+            content_row = self.record_lines[ iRow + 1 ].replace('"','').split(',')
+            if not len(heading_row) == len(content_row):
+                print(heading_row)
+                print(content_row)
+                raise ValueError("CEV may be malformed, heading and data did not match in length.")
+            # Load the Data into Class Keys
+            for key, value in zip(heading_row, content_row):
+                # Verify Attribute and Load
+                key = key.lower()
+                if key in self._keys():
+                    if callable( self.__dict__[key] ):
+                        continue # Don't Overwrite a Callable!
+                # Store the Data
+                self.__dict__[key] = value
+            
+            # Check Next Group
+            header = (
+                self._is_header( self.record_lines[ iRow + 2 ] ) and
+                self._is_data( self.record_lines[ iRow + 3 ] ) and
+                self._is_header( self.record_lines[ iRow + 4 ] )
+            )
+            # Increment Row Index
+            iRow += 2
+        
+        # Following the Primary Header Content, a Single Header Remains
+        # with the Analog and Digital Channel Names
+        channels = re.split(r',| ', self.record_lines[ iRow ])
+        is_analog = True # First Channel from Left is Analog
+
+        # Identify Channel Names as Analog or Digital
+        for i, channel in enumerate(channels):
+            # Check if Trig Channel
+            if '"TRIG"' == channel:
+                is_analog = False
+                self._ignored_channels.append(i)
+                self._trig_column = i
+                continue # Don't Track the TRIP Channel
+            # Remove Double Quotes
+            channel = channel.replace('"','')
+            # Check if Unused Channel
+            if ('*' == channel) or ('' == channel):
+                self._ignored_channels.append(i)
+                continue
+            # Channel Must be Valid, Append Name to Either Analog or Digital
+            if is_analog:
+                self.analog_channel_ids.append(channel)
+            else:
+                self.status_channel_ids.append(channel)
+        
+        iRow += 1 # Increment Past the Data Heading Column
+
+        # Characterize Number of Channels
+        self.analog_count = len(self.analog_channel_ids)
+        self.status_count = len(self.status_channel_ids)
+
+        # Build the Channel Lists According to Sizes
+        self.analog_channels = [ [] for x in range(self.analog_count) ]
+        self.status_channels = [ [] for x in range(self.status_count) ]
+
+        # Iterate over Data Rows to Load Channels
+        numRows = len(self.record_lines)
+        while iRow < numRows:
+            channels = self.record_lines[ iRow ].split(',')
+            # Track Analog Quantities
+            for i in range(0, self.analog_count):
+                self.analog_channels[i].append( channels[i] )
+            
+            iRow += 1 # Increment Row Index
+                
+    
+    # Define Event Trigger Time Evaluator
+    def _eval_trigger_time(self):
+        """ Simple Function to Use Loaded Time Information to Identify Trigger Time """
+        usec = int(self.msec) * 1000
+        self.trigger_time = dt.datetime(
+            year    = int(self.year),
+            month   = int(self.month),
+            day     = int(self.day),
+            hour    = int(self.hour),
+            minute  = int(self.min),
+            second  = int(self.sec),
+            microsecond = usec
+        )
+    
+    # Define FID Cleaner
+    def _clean_fid(self):
+        """ Simply Store the 'raw' FID in a New Variable, and Clean Existing FID """
+        self.raw_fid = self.fid
+        self.fid = self.fid.split('=')[1]
+
     # Define File Loader Method
     def load(self, file, encoding=None):
         """
@@ -274,18 +399,26 @@ class Cev():
         # Read File with Encoding
         with open(file, 'r', encoding=encoding) as fObj:
             self.data = fObj.read() # Gather ALL Data From File
-        # Prepare Record Information
-        self._prepare_and_validate_record()
+        # Process the Data and Load Record
+        self.load_data(data=None)
     
     # Define Data Loader Method
     def load_data(self, data, encoding=None):
         """
         
         """
-        # Decode Data As Needed
-        self.data = self._decode(data, encoding=encoding)
+        # Method is Called Internally with `data=None`, Don't Try Loading in this Case
+        if data != None:
+            # Decode Data As Needed
+            self.data = self._decode(data, encoding=encoding)
         # Prepare Record Information
         self._prepare_and_validate_record()
+        # Parse the Record
+        self._parse_record()
+        # Determine the Trigger Time
+        self._eval_trigger_time()
+        # Clean FID
+        self._clean_fid()
 
 
 
@@ -297,6 +430,10 @@ if __name__ == '__main__':
     print(row_wise_checksum('"SETTINGS","02E1"'))
     filepath = input("Specify a CEV file to test against: ")
     x = Cev(file=filepath)
+    print(x.fid)
+    print(x.trigger_time)
+    print(x.analog_channel_ids)
+    print(x.analog_channels[-1])
 
 
 # END
