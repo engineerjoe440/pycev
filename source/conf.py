@@ -73,8 +73,8 @@ exclude_patterns = []
 #
 html_theme = 'classic'
 html_title = 'pycev'
-html_logo  = '../logo/pycev.png'
-html_favicon = '../logo/pycev.png'
+html_logo  = '../logo/pycev_white.png'
+html_favicon = '../logo/pycev_white.png'
 html_theme_options = {
     'rightsidebar':     'false',
     'stickysidebar':    'false',
