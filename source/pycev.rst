@@ -12,6 +12,10 @@ to the various informational data-points for the event record.
 Additional Package Functions
 ----------------------------
 
+.. autofunction:: pycev.hex_byte_to_bits
+
+.. autofunction:: pycev.hex_bits_from_str
+
 .. autofunction:: pycev.row_wise_checksum
 
 .. autofunction:: pycev.split_event_and_relay_data
