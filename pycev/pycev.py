@@ -687,6 +687,77 @@ class Cev():
         self._eval_trigger_time()
         # Clean FID
         self._clean_fid()
+    
+    # Define Method to Access the Analog Channel by Name
+    def get_analog(self, channel_name):
+        """
+        *Extract an analog channel by name*
+        
+        Use this method to return the list of analog values
+        associated with the particular analog channel with
+        the specified name.
+        
+        Parameters
+        ----------
+        channel_name:   str
+                        Name of the analog channel which
+                        should be extracted.
+        
+        Returns
+        -------
+        channel:    list of float
+                    The analog channel values in a zero-based
+                    list.
+        
+        See Also
+        --------
+        get_status  : Collect the digital channel status for a
+                      specified name.
+        get_digital : Collect the digital channel status for a
+                      specified name.
+        """
+        # Identify the Analog Channel Index
+        channel_index = self.analog_channel_ids.index(channel_name)
+        # Return the Analog Channel
+        return self.analog_channels[channel_index]
+    
+    # Define Method to Access the Digital Channel by Name
+    def get_status(self, channel_name):
+        """
+        *Extract an digital channel by name*
+        
+        Use this method to return the list of digital values
+        associated with the particular digital channel with
+        the specified name.
+        
+        Parameters
+        ----------
+        channel_name:   str
+                        Name of the digital channel which
+                        should be extracted.
+        
+        Returns
+        -------
+        channel:    list of float
+                    The digital channel values in a zero-based
+                    list.
+        
+        See Also
+        --------
+        get_analog  : Collect the analog channel status for a
+                      specified name.
+        get_status  : Collect the digital channel status for a
+                      specified name.
+        get_digital : Collect the digital channel status for a
+                      specified name.
+        """
+        # Identify the Digital Channel Index
+        channel_index = self.status_channel_ids.index(channel_name)
+        # Return the Digital Channel
+        return self.status_channels[channel_index]
+    
+    # Alias `get_status` to `get_digital`
+    get_digital = get_status
 
 
 
