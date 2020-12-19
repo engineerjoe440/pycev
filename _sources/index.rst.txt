@@ -83,5 +83,5 @@ Source Repository and Package Release (PyPI):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - GitHub: https://github.com/engineerjoe440/pycev
-- PyPI: no-link-available-yet
+- PyPI: https://pypi.org/project/pycev/
 
