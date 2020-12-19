@@ -325,14 +325,120 @@ was “triggered” by protection logic in the relay.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycev.Cev.load" title="pycev.Cev.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file[, encoding])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pycev.Cev.get_analog" title="pycev.Cev.get_analog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_analog</span></code></a>(channel_name)</p></td>
+<td><p><em>Extract an analog channel by name</em></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pycev.Cev.get_digital" title="pycev.Cev.get_digital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_digital</span></code></a>(channel_name)</p></td>
+<td><p><em>Extract an digital channel by name</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pycev.Cev.get_status" title="pycev.Cev.get_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_status</span></code></a>(channel_name)</p></td>
+<td><p><em>Extract an digital channel by name</em></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pycev.Cev.load" title="pycev.Cev.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file[, encoding])</p></td>
 <td><p><em>CEV File Loader Method</em></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycev.Cev.load_data" title="pycev.Cev.load_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_data</span></code></a>(data[, encoding])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pycev.Cev.load_data" title="pycev.Cev.load_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_data</span></code></a>(data[, encoding])</p></td>
 <td><p><em>CEV Data Loader Method</em></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt id="pycev.Cev.get_analog">
+<code class="sig-name descname">get_analog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_analog" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Extract an analog channel by name</em></p>
+<p>Use this method to return the list of analog values
+associated with the particular analog channel with
+the specified name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>channel_name</strong> (<em>str</em>) – Name of the analog channel which
+should be extracted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>channel</strong> – The analog channel values in a zero-based
+list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pycev.Cev.get_status" title="pycev.Cev.get_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_status</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+<dt><a class="reference internal" href="#pycev.Cev.get_digital" title="pycev.Cev.get_digital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_digital</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pycev.Cev.get_digital">
+<code class="sig-name descname">get_digital</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_digital" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Extract an digital channel by name</em></p>
+<p>Use this method to return the list of digital values
+associated with the particular digital channel with
+the specified name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>channel_name</strong> (<em>str</em>) – Name of the digital channel which
+should be extracted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>channel</strong> – The digital channel values in a zero-based
+list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pycev.Cev.get_analog" title="pycev.Cev.get_analog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_analog</span></code></a></dt><dd><p>Collect the analog channel status for a specified name.</p>
+</dd>
+<dt><a class="reference internal" href="#pycev.Cev.get_status" title="pycev.Cev.get_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_status</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+<dt><a class="reference internal" href="#pycev.Cev.get_digital" title="pycev.Cev.get_digital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_digital</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pycev.Cev.get_status">
+<code class="sig-name descname">get_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Extract an digital channel by name</em></p>
+<p>Use this method to return the list of digital values
+associated with the particular digital channel with
+the specified name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>channel_name</strong> (<em>str</em>) – Name of the digital channel which
+should be extracted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>channel</strong> – The digital channel values in a zero-based
+list.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pycev.Cev.get_analog" title="pycev.Cev.get_analog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_analog</span></code></a></dt><dd><p>Collect the analog channel status for a specified name.</p>
+</dd>
+<dt><a class="reference internal" href="#pycev.Cev.get_status" title="pycev.Cev.get_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_status</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+<dt><a class="reference internal" href="#pycev.Cev.get_digital" title="pycev.Cev.get_digital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_digital</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="pycev.Cev.load">
 <code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load" title="Permalink to this definition">¶</a></dt>
