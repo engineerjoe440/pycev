@@ -1,6 +1,8 @@
 # PyCEV <img src="https://raw.githubusercontent.com/engineerjoe440/pycev/main/logo/pycev.png" width="250" alt="logo" align="right">
 *Python interpreter for SEL (Schweitzer Engineering Laboratories) CEV (Compressed EVent record) files.*
 
+[![test status](https://gitlab.stanleysolutionsnw.com/engineerjoe440/pycev-test-ci/badges/master/pipeline.svg)](https://gitlab.stanleysolutionsnw.com/engineerjoe440/pycev-test-ci/-/commits/master)
+
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 
 ## Description:
