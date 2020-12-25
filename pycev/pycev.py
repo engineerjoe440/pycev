@@ -530,6 +530,11 @@ class Cev():
                 self._ignored_channels.append(i)
                 self._trig_column = i
                 continue # Don't Track the TRIP Channel
+            elif '*' == channel:
+                self._ignored_channels.append(i)
+                continue # Don't Track Unused Channels
+            elif '' == channel:
+                continue # Don't Track Empty Channel Names
             # Remove Double Quotes
             channel = channel.replace('"','')
             # Channel Must be Valid, Append Name to Either Analog or Digital
@@ -556,16 +561,24 @@ class Cev():
             k = 0
             for i in range(0, self.analog_count):
                 value = float( channels[i] )
-                self.analog_channels[i].append( value )
+                # Verify that Channel Index Shouldn't be Ignored
+                if i not in self._ignored_channels:
+                    self.analog_channels[i].append( value )
                 k = i + 2
             
             # Format the Digitals
             digital_string = channels[k].replace('"','')
             digitals = hex_bits_from_str( digital_string )
             
+            print(self.status_channel_ids)
+            print(iRow, len(digitals), self.status_count)
+            print(digital_string)
+            
             # Track Digital Quantities
             for i in range(0, self.status_count):
-                self.status_channels[i].append( digitals[i] )
+                # Verify that Channel Index (Offset by the TRIG channel) Shouldn't be Ignored
+                if (i + self._trig_column) not in self._ignored_channels:
+                    self.status_channels[i].append( digitals[i] )
             
             iRow += 1 # Increment Row Index
                 
