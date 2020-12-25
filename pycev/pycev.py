@@ -570,10 +570,6 @@ class Cev():
             digital_string = channels[k].replace('"','')
             digitals = hex_bits_from_str( digital_string )
             
-            print(self.status_channel_ids)
-            print(iRow, len(digitals), self.status_count)
-            print(digital_string)
-            
             # Track Digital Quantities
             for i in range(0, self.status_count):
                 # Verify that Channel Index (Offset by the TRIG channel) Shouldn't be Ignored
