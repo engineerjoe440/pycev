@@ -1,6 +1,11 @@
 # PyCEV <img src="https://raw.githubusercontent.com/engineerjoe440/pycev/main/logo/pycev.png" width="250" alt="logo" align="right">
 *Python interpreter for SEL (Schweitzer Engineering Laboratories) CEV (Compressed EVent record) files.*
 
+[![](https://img.shields.io/pypi/v/pycev.svg?color=blue&logo=pypi&logoColor=white)](https://pypi.org/project/pycev/)
+[![](https://pepy.tech/badge/pycev)](https://pepy.tech/project/pycev)
+[![](https://img.shields.io/github/stars/engineerjoe440/pycev?logo=github)](https://github.com/engineerjoe440/pycev/)
+[![](https://img.shields.io/pypi/l/pycev.svg?color=blue)](https://github.com/engineerjoe440/pycev/blob/master/LICENSE.txt)
+
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 
 ## Description:
