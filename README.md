@@ -19,7 +19,7 @@ allow CEV to COMTRADE conversions, or to write CEV files from raw data.
 
 **From PyPI as a Python Package**
 
-This information is yet to come, as `pycev` has yet to be published to PyPI at this time.
+Just go ahead and issue: `pip install pycev`
 
 **From GitHub as a Python Package**
 
@@ -41,6 +41,16 @@ If you wish to use `pycev` as a standalone file in your Python project, you can 
 download the `pycev.py` file from GitHub (you'll want
 [this file](https://github.com/engineerjoe440/pycev/blob/main/pycev/pycev.py) exactly)
 and save it wherever you need it! Then, just `import pycev` and away you go!
+
+## Contributing:
+
+Want to get involved? We'd love to have your help!
+
+Please help us by identifying any issues that you come across. If you find an error,
+bug, or just have questions, jump over to the
+[issue](https://github.com/engineerjoe440/pycev/issues) page.
+
+If you want to add features, or contribute yourself, feel free to open a pull-request.
 
 ### Contact Info:
 For issues found in the source code itself, please feel free to open an
