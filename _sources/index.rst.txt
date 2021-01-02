@@ -31,7 +31,7 @@ Installation
 
 **From PyPI as a Python Package**
 
-This information is yet to come, as `pycev` has yet to be published to PyPI at this time.
+Just go ahead and issue: `pip install pycev`
 
 **From GitHub as a Python Package**
 
@@ -71,8 +71,20 @@ modify, distribute, and use for both personal and commercial applications. There
 warranty, and the `pycev` project maintainer(s) may not be held liable in the terms
 specified by the MIT license. 
 
-Contact Info:
-~~~~~~~~~~~~~
+Contributing
+------------
+
+Want to get involved? We'd love to have your help!
+
+Please help us by identifying any issues that you come across. If you find an error,
+bug, or just have questions, jump over to the
+`issue <https://github.com/engineerjoe440/pycev/issues>`_ page.
+
+If you want to add features, or contribute yourself, feel free to open a pull-request.
+
+
+Contact Info
+~~~~~~~~~~~~
 
 For issues found in the source code itself, please feel free to open an
 `issue <https://github.com/engineerjoe440/pycev/issues>`_, but for general inquiries
