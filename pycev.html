@@ -45,7 +45,7 @@ This class can be used to interpret SEL CEV files, and provides access
 to the various informational data-points for the event record.</p>
 <dl class="py class">
 <dt id="pycev.Cev">
-<em class="property">class </em><code class="sig-prename descclassname">pycev.</code><code class="sig-name descname">Cev</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pycev.</span></code><code class="sig-name descname"><span class="pre">Cev</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>SEL CEV File Reader</em></p>
 <p>This class serves to provide functionality to read SEL (Schweitzer
 Engineering Laboratories) Compressed EVent records (CEV files) and
@@ -92,7 +92,7 @@ but none are required.</p>
 </dl>
 <dl class="py attribute">
 <dt id="pycev.Cev.analog_channels">
-<code class="sig-name descname">analog_channels</code><a class="headerlink" href="#pycev.Cev.analog_channels" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">analog_channels</span></code><a class="headerlink" href="#pycev.Cev.analog_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of lists containing the analog samples
 for each channel.</p>
 <dl class="field-list simple">
@@ -104,7 +104,7 @@ for each channel.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.analog_channel_ids">
-<code class="sig-name descname">analog_channel_ids</code><a class="headerlink" href="#pycev.Cev.analog_channel_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">analog_channel_ids</span></code><a class="headerlink" href="#pycev.Cev.analog_channel_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of the analog channel names whose index
 values correspond directly to the channel
 datasets in <cite>analog_channels</cite>.</p>
@@ -117,7 +117,7 @@ datasets in <cite>analog_channels</cite>.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.analog_count">
-<code class="sig-name descname">analog_count</code><a class="headerlink" href="#pycev.Cev.analog_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">analog_count</span></code><a class="headerlink" href="#pycev.Cev.analog_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of analog channels present in CEV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -128,7 +128,7 @@ datasets in <cite>analog_channels</cite>.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.channels_count">
-<code class="sig-name descname">channels_count</code><a class="headerlink" href="#pycev.Cev.channels_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">channels_count</span></code><a class="headerlink" href="#pycev.Cev.channels_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Total number of analog and digital (status)
 channels in CEV.</p>
 <dl class="field-list simple">
@@ -140,7 +140,7 @@ channels in CEV.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.data">
-<code class="sig-name descname">data</code><a class="headerlink" href="#pycev.Cev.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">data</span></code><a class="headerlink" href="#pycev.Cev.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Full string context of the entire CEV record;
 includes both the event information and relay
 settings that were included with the record.</p>
@@ -153,7 +153,7 @@ settings that were included with the record.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.digital_channels">
-<code class="sig-name descname">digital_channels</code><a class="headerlink" href="#pycev.Cev.digital_channels" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">digital_channels</span></code><a class="headerlink" href="#pycev.Cev.digital_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of lists containing boolean states for
 each digital (status) channel present in CEV.
 This list presents itself as an alias to the
@@ -167,7 +167,7 @@ This list presents itself as an alias to the
 
 <dl class="py attribute">
 <dt id="pycev.Cev.digital_channel_ids">
-<code class="sig-name descname">digital_channel_ids</code><a class="headerlink" href="#pycev.Cev.digital_channel_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">digital_channel_ids</span></code><a class="headerlink" href="#pycev.Cev.digital_channel_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of the digital (status) channel names
 whose index values correspond directly to the
 channel datasets in <cite>digital_channels</cite>. This
@@ -182,7 +182,7 @@ list presents itself as an alias to the
 
 <dl class="py attribute">
 <dt id="pycev.Cev.digital_count">
-<code class="sig-name descname">digital_count</code><a class="headerlink" href="#pycev.Cev.digital_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">digital_count</span></code><a class="headerlink" href="#pycev.Cev.digital_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of digital channels present in the CEV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -193,7 +193,7 @@ list presents itself as an alias to the
 
 <dl class="py attribute">
 <dt id="pycev.Cev.fid">
-<code class="sig-name descname">fid</code><a class="headerlink" href="#pycev.Cev.fid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fid</span></code><a class="headerlink" href="#pycev.Cev.fid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relay firmware identification string; does not
 include the ‘FID=’ specifier.</p>
 <dl class="field-list simple">
@@ -205,7 +205,7 @@ include the ‘FID=’ specifier.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.frequency">
-<code class="sig-name descname">frequency</code><a class="headerlink" href="#pycev.Cev.frequency" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">frequency</span></code><a class="headerlink" href="#pycev.Cev.frequency" title="Permalink to this definition">¶</a></dt>
 <dd><p>The recorded nominal frequency present in the
 CEV.</p>
 <dl class="field-list simple">
@@ -217,7 +217,7 @@ CEV.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.raw_fid">
-<code class="sig-name descname">raw_fid</code><a class="headerlink" href="#pycev.Cev.raw_fid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">raw_fid</span></code><a class="headerlink" href="#pycev.Cev.raw_fid" title="Permalink to this definition">¶</a></dt>
 <dd><p>“Raw” relay firmware identification string;
 includes the ‘FID=’ specifier to lead the string.</p>
 <dl class="field-list simple">
@@ -229,7 +229,7 @@ includes the ‘FID=’ specifier to lead the string.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.record">
-<code class="sig-name descname">record</code><a class="headerlink" href="#pycev.Cev.record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">record</span></code><a class="headerlink" href="#pycev.Cev.record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Event record data-sub-section contents; contains
 only the event-related data and heading fields of
 the CEV that was loaded.</p>
@@ -242,7 +242,7 @@ the CEV that was loaded.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.record_lines">
-<code class="sig-name descname">record_lines</code><a class="headerlink" href="#pycev.Cev.record_lines" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">record_lines</span></code><a class="headerlink" href="#pycev.Cev.record_lines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Row-wise split contents of the record with all
 newline and carriage-return characters removed.</p>
 <dl class="field-list simple">
@@ -254,7 +254,7 @@ newline and carriage-return characters removed.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.settings">
-<code class="sig-name descname">settings</code><a class="headerlink" href="#pycev.Cev.settings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">settings</span></code><a class="headerlink" href="#pycev.Cev.settings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relay settings data-sub-section contents; contains
 only the relay settings portion of the CEV that
 was loaded.</p>
@@ -267,7 +267,7 @@ was loaded.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.status_channels">
-<code class="sig-name descname">status_channels</code><a class="headerlink" href="#pycev.Cev.status_channels" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">status_channels</span></code><a class="headerlink" href="#pycev.Cev.status_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of lists containing boolean states for
 each status (digital) channel present in CEV.
 This list is aliased to the <cite>digital_channels</cite>
@@ -281,7 +281,7 @@ class attribute.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.status_channel_ids">
-<code class="sig-name descname">status_channel_ids</code><a class="headerlink" href="#pycev.Cev.status_channel_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">status_channel_ids</span></code><a class="headerlink" href="#pycev.Cev.status_channel_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of the status (digital) channel names
 whose index values correspond directly to the
 channel datasets in <cite>status_channels</cite>. This
@@ -296,7 +296,7 @@ class attribute.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.status_count">
-<code class="sig-name descname">status_count</code><a class="headerlink" href="#pycev.Cev.status_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">status_count</span></code><a class="headerlink" href="#pycev.Cev.status_count" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of status channels present in the CEV.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -307,7 +307,7 @@ class attribute.</p>
 
 <dl class="py attribute">
 <dt id="pycev.Cev.trigger_time">
-<code class="sig-name descname">trigger_time</code><a class="headerlink" href="#pycev.Cev.trigger_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">trigger_time</span></code><a class="headerlink" href="#pycev.Cev.trigger_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Date-time structure indicating when the event
 was “triggered” by protection logic in the relay.</p>
 <dl class="field-list simple">
@@ -343,7 +343,7 @@ was “triggered” by protection logic in the relay.</p>
 </table>
 <dl class="py method">
 <dt id="pycev.Cev.get_analog">
-<code class="sig-name descname">get_analog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_analog" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_analog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_analog" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an analog channel by name</em></p>
 <p>Use this method to return the list of analog values
 associated with the particular analog channel with
@@ -374,7 +374,7 @@ list.</p>
 
 <dl class="py method">
 <dt id="pycev.Cev.get_digital">
-<code class="sig-name descname">get_digital</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_digital" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_digital</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_digital" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an digital channel by name</em></p>
 <p>Use this method to return the list of digital values
 associated with the particular digital channel with
@@ -407,7 +407,7 @@ list.</p>
 
 <dl class="py method">
 <dt id="pycev.Cev.get_status">
-<code class="sig-name descname">get_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_status" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an digital channel by name</em></p>
 <p>Use this method to return the list of digital values
 associated with the particular digital channel with
@@ -440,7 +440,7 @@ list.</p>
 
 <dl class="py method">
 <dt id="pycev.Cev.load">
-<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>CEV File Loader Method</em></p>
 <p>Use this method to load a CEV file, and parse its contents into the
 valuable class attributes and structure.</p>
@@ -483,7 +483,7 @@ share an equal number of columns.</p></li>
 
 <dl class="py method">
 <dt id="pycev.Cev.load_data">
-<code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">load_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>CEV Data Loader Method</em></p>
 <p>Use this method to load the data from a CEV file which has already been
 read, or data which is being streamed to the class (i.e., an active
@@ -526,7 +526,7 @@ share an equal number of columns.</p>
 <h2>Additional Package Functions<a class="headerlink" href="#additional-package-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="pycev.hex_byte_to_bits">
-<code class="sig-prename descclassname">pycev.</code><code class="sig-name descname">hex_byte_to_bits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hex_byte</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.hex_byte_to_bits" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pycev.</span></code><code class="sig-name descname"><span class="pre">hex_byte_to_bits</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex_byte</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.hex_byte_to_bits" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Interpret a single hex character as bits</em></p>
 <p>This function will accept a hex byte (two characters, 0-F)
 and cast it to a list of eight bits. Credit to StackOverflow
@@ -555,7 +555,7 @@ position in the input byte.</p>
 
 <dl class="py function">
 <dt id="pycev.hex_bits_from_str">
-<code class="sig-prename descclassname">pycev.</code><code class="sig-name descname">hex_bits_from_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hex_string</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.hex_bits_from_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pycev.</span></code><code class="sig-name descname"><span class="pre">hex_bits_from_str</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.hex_bits_from_str" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Interpret string of hex characters as a list of bits</em></p>
 <p>This function will accept the hex string presented in CEV
 files and construct a list of bits where each bit corresponds
@@ -583,7 +583,7 @@ the hex string input.</p>
 
 <dl class="py function">
 <dt id="pycev.row_wise_checksum">
-<code class="sig-prename descclassname">pycev.</code><code class="sig-name descname">row_wise_checksum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">row_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.row_wise_checksum" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pycev.</span></code><code class="sig-name descname"><span class="pre">row_wise_checksum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.row_wise_checksum" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Identify the data and validate it with included checksum</em></p>
 <p>Events should contain rows of data, where each row appears
 as:</p>
@@ -610,7 +610,7 @@ Row(‘data’:str, ‘validity’:bool)</p>
 
 <dl class="py function">
 <dt id="pycev.split_event_and_relay_data">
-<code class="sig-prename descclassname">pycev.</code><code class="sig-name descname">split_event_and_relay_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.split_event_and_relay_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pycev.</span></code><code class="sig-name descname"><span class="pre">split_event_and_relay_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.split_event_and_relay_data" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Split the Event Data from Relay Settings</em></p>
 <p>This function accepts the full text from a CEV file, and separates
 the event-record data from the relay’s configuration settings.
@@ -694,7 +694,7 @@ is the relay’s configuration settings.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Joe Stanley.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.0.
     </div>
   </body>
 </html>
