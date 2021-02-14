@@ -5,6 +5,7 @@
 [![](https://pepy.tech/badge/pycev)](https://pepy.tech/project/pycev)
 [![](https://img.shields.io/github/stars/engineerjoe440/pycev?logo=github)](https://github.com/engineerjoe440/pycev/)
 [![](https://img.shields.io/pypi/l/pycev.svg?color=blue)](https://github.com/engineerjoe440/pycev/blob/master/LICENSE.txt)
+[![Build Status](http://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-CI)](http://jenkins.stanleysolutionsnw.com/job/PyCEV-CI/)
 
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 
