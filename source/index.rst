@@ -21,11 +21,11 @@ EVent records, contain information relating to faults encountered on electrical 
 They are especially useful in post-event-analysis and for ongoing system development.
 
 .. note::
-   ***This project, although providing support for CEV files created by SEL, is not
+   **This project, although providing support for CEV files created by SEL, is not
    sponsored, tested, or vetted in any way by Schweitzer Engineering Laboratories (SEL).
    This project is authored and maintained as an open-source project. Testing is performed
    on a very small set of event records provided from hardware running in the author's
-   basement in the author's basement. In short, this project has no association with SEL.***
+   basement in the author's basement. In short, this project has no association with SEL.**
 
 
 Core Documentation
@@ -103,7 +103,7 @@ If you want to add features, or contribute yourself, feel free to open a pull-re
 
 Contact Info
 ~~~~~~~~~~~~
-As mentioned in the [caution](https://engineerjoe440.github.io/pycev/#pycev-sel-compessed-event-record-reader-in-python)
+As mentioned in the `caution <https://engineerjoe440.github.io/pycev/#pycev-sel-compessed-event-record-reader-in-python>`_
 above, this project is not associated with Schweitzer Engineering Laboratories (SEL) in any
 way, and as such, all contacts for questions, support, or other items should be directed to
 the resources listed here.
