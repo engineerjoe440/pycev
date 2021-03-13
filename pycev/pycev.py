@@ -56,6 +56,7 @@ EVENT_SETTINGS_SEP = '"SETTINGS","02E1"'
 ANALOG_SAMPLES = "SAM/CYC_A"
 DIGITAL_SAMPLES = "SAM/CYC_D"
 TRIGGER_KEY_CHAR = ">"
+FREQUENCY_KEY = "FREQ"
 
 
 # Define Function to Evaluate Checksum
@@ -628,6 +629,11 @@ class Cev():
             microsecond=usec
         )
 
+    # Define Frequency Identifier
+    def _eval_frequency(self):
+        """Simple function to identify and load the system nominal frequency"""
+        self.frequency = float(self._properties.get(FREQUENCY_KEY, 60.0))
+
     # Define FID Cleaner
     def _clean_fid(self):
         """Store the 'raw' FID in a New Variable, and Clean Existing FID"""
@@ -642,8 +648,9 @@ class Cev():
         """Identify the Samples/Cycle Indicators, Calculate the Deltas"""
         try:
             # Extract the Number of Samples per Cycle, Evaluate Milliseconds
-            analog_ms = (1000 / 60) / float(self._properties[ANALOG_SAMPLES])
-            digital_ms = (1000 / 60) / float(self._properties[DIGITAL_SAMPLES])
+            ms_per_cyc = 1000 / self.frequency
+            analog_ms = ms_per_cyc / float(self._properties[ANALOG_SAMPLES])
+            digital_ms = ms_per_cyc / float(self._properties[DIGITAL_SAMPLES])
         except KeyError:
             raise ValueError("Failed to identify number of samples per cycle")
         # Prepare the TimeDeltas
@@ -757,6 +764,8 @@ class Cev():
         self._parse_record()
         # Determine the Trigger Time
         self._eval_trigger_time()
+        # Identify Nominal System Frequency
+        self._eval_frequency()
         # Clean FID
         self._clean_fid()
         # Rationalize Number of Samples per Cycle
