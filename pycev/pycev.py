@@ -51,7 +51,11 @@ _version_ = "0.0"
 __version__ = _version_  # Alias the Version String
 
 
+# Define Global Strings
 EVENT_SETTINGS_SEP = '"SETTINGS","02E1"'
+ANALOG_SAMPLES = "SAM/CYC_A"
+DIGITAL_SAMPLES = "SAM/CYC_D"
+TRIGGER_KEY_CHAR = ">"
 
 
 # Define Function to Evaluate Checksum
@@ -388,6 +392,7 @@ class Cev():
         self.record_lines = []
         self.fid = ''
         self.raw_fid = ''
+        self.time = []
         self.trigger_time = dt.datetime(1970, 1, 1)  # Default to Epoch
         self.channels_count = 0
         self.analog_channels = []
@@ -403,6 +408,10 @@ class Cev():
 
         self._ignored_channels = []
         self._trig_column = -1
+        self._trig_row = 0
+        self._analog_samp_timedelta = None
+        self._digital_samp_timedelta = None
+        self._properties = {}  # Empty Dictionary of the Keys
 
         # Prepare Data or File if Provided
         if file is not None:
@@ -471,8 +480,8 @@ class Cev():
             lineno = parent.lineno
             warnings.showwarning(
                 message=(
-                    'Record data appears to be malformed,' +
-                    ' and fails checksum validation.'
+                    'Record data appears to be malformed, '
+                    'and fails checksum validation.'
                 ),
                 category=UserWarning,
                 filename=callfile,
@@ -518,12 +527,15 @@ class Cev():
             # Load the Data into Class Keys
             for key, value in zip(heading_row, content_row):
                 # Verify Attribute and Load
-                key = key.lower()
-                if key in self._keys():
-                    if callable(self.__dict__[key]):
+                key_lower = key.lower()
+                if key_lower in self._keys():
+                    if callable(self.__dict__[key_lower]):
                         continue  # Don't Overwrite a Callable!
-                # Store the Data
-                self.__dict__[key] = value
+                if (key.find('/') == -1) and (key.find('(') == -1):
+                    # Valid Class Variable Name, Load Directly
+                    self.__dict__[key_lower] = value
+                # Store the Data as a Property
+                self._properties[key] = value
 
             # Check Next Group
             header = (
@@ -573,6 +585,7 @@ class Cev():
 
         # Iterate over Data Rows to Load Channels
         numRows = len(self.record_lines)
+        initRow = iRow
         while iRow < numRows:
             channels = self.record_lines[iRow].split(',')
             # Track Analog Quantities
@@ -583,6 +596,10 @@ class Cev():
                 if i not in self._ignored_channels:
                     self.analog_channels[i].append(value)
                 k = i + 2
+
+            # Identify Trigger Data Row
+            if TRIGGER_KEY_CHAR in channels[k-1]:
+                self._trig_row = iRow - initRow
 
             # Format the Digitals
             digital_string = channels[k].replace('"', '')
@@ -614,8 +631,35 @@ class Cev():
     # Define FID Cleaner
     def _clean_fid(self):
         """Store the 'raw' FID in a New Variable, and Clean Existing FID"""
-        self.raw_fid = self.fid
-        self.fid = self.fid.split('=')[1]
+        try:
+            self.raw_fid = self.fid
+            self.fid = self.fid.split('=')[1]
+        except Exception:
+            raise ValueError("Failed to load relay FID from CEV")
+
+    # Define Samples-Per-Cycle Evaluator
+    def _eval_samples_per_cycle(self):
+        """Identify the Samples/Cycle Indicators, Calculate the Deltas"""
+        try:
+            # Extract the Number of Samples per Cycle, Evaluate Milliseconds
+            analog_ms = (1000 / 60) / float(self._properties[ANALOG_SAMPLES])
+            digital_ms = (1000 / 60) / float(self._properties[DIGITAL_SAMPLES])
+        except KeyError:
+            raise ValueError("Failed to identify number of samples per cycle")
+        # Prepare the TimeDeltas
+        self._analog_samp_timedelta = dt.timedelta(milliseconds=analog_ms)
+        self._digital_samp_timedelta = dt.timedelta(milliseconds=digital_ms)
+
+    # Define Timestamp Loader
+    def _eval_timestamps(self):
+        """Evaluate event timestamps"""
+        # Calculate the first timestamp
+        initTimeDelta = self._analog_samp_timedelta * self._trig_row
+        self.time = [self.trigger_time - initTimeDelta]
+        # Iteratively Calculate Remaining Timestamps
+        for _ in range(1, len(self.analog_channels[0])):
+            # Add Timedelta to Most Recent Time Value
+            self.time.append(self.time[-1] + self._analog_samp_timedelta)
 
     # Define File Loader Method
     def load(self, file, encoding=None):
@@ -715,6 +759,10 @@ class Cev():
         self._eval_trigger_time()
         # Clean FID
         self._clean_fid()
+        # Rationalize Number of Samples per Cycle
+        self._eval_samples_per_cycle()
+        # Evaluate the Timestamps
+        self._eval_timestamps()
 
     # Define Method to Access the Analog Channel by Name
     def get_analog(self, channel_name):
