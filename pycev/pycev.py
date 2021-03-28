@@ -130,7 +130,7 @@ def hex_byte_to_bits(hex_byte):
 
 
 # Define Function to Evaluate List of Bits from Raw Hex String
-def hex_bits_from_str(hex_string):
+def hex_bits_from_str(self, hex_string):
     """
     *Interpret string of hex characters as a list of bits*
 
@@ -423,6 +423,10 @@ class Cev():
         elif data is not None:
             self.load_data(data=data, encoding=encoding)
 
+    # Strap Functions as Methods
+    hex_bits_from_str = hex_bits_from_str
+    hex_byte_to_bits = hex_byte_to_bits
+
     # Define Simple Method to Identify Class Keys
     def _keys(self):
         """ Capture Class Attributes as Keys """
@@ -607,7 +611,7 @@ class Cev():
     def __parse_record_digital_channels(self, digitals_column):
         """ Parse the Digital Channels for a Specified Row """
         # Format the Digitals
-        digitals = hex_bits_from_str(re.sub('"', '', digitals_column))
+        digitals = self.hex_bits_from_str(re.sub('"', '', digitals_column))
 
         # Track Digital Quantities
         for i in range(0, self.status_count):
