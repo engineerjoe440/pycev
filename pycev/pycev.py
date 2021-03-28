@@ -59,6 +59,11 @@ TRIGGER_KEY_CHAR = ">"
 FREQUENCY_KEY = "FREQ"
 
 
+# Define Global RegEx Terms
+RE_COMMA = re.compile(r',')
+RE_CHANNEL_SEP = re.compile(r',| ')
+
+
 # Define Function to Evaluate Checksum
 def _eval_checksum(data, constrain=True):
     """
@@ -99,8 +104,7 @@ def hex_byte_to_bits(hex_byte):
     *Interpret a single hex character as bits*
 
     This function will accept a hex byte (two characters, 0-F)
-    and cast it to a list of eight bits. Credit to StackOverflow
-    user: "Beebs" for concise function implementation.
+    and cast it to a list of eight bits.
 
     Parameters
     ----------
@@ -119,11 +123,10 @@ def hex_byte_to_bits(hex_byte):
     hex_bits_from_str   : Determine the bit-structure of multiple
                           hex bytes in a string.
     """
-    binary_byte = bin(int(hex_byte, base=16))
-    # Use zfill to pad the string with zeros as we want
-    # all 8 digits of the byte.
-    bits_string = binary_byte[2:].zfill(8)
-    return [int(bit) for bit in bits_string]
+    # Find the binary string.
+    binary_byte = bin(int(hex_byte, base=16))[2:]  # Collect chars after '0b'
+    # Update the Base Return List by Slicing and Loading as Appropriate
+    return [0] * (8-len(binary_byte)) + [int(bit) for bit in binary_byte]
 
 
 # Define Function to Evaluate List of Bits from Raw Hex String
@@ -504,9 +507,9 @@ class Cev():
         """ Simple Test Function to Evaluate Whether Row isn't Header """
         return not self._is_header(row_data=row_data)
 
-    # Define Primary Parsing Function
-    def _parse_record(self):
-        """ Primary Parsing Function to Interpret the CEV """
+    # Define Header Parsing Agent
+    def __parse_record_header(self):
+        """ Parsing Function to Interpret Header Information of CEV """
         # Operate on "Row-Pairs" with two Rows at Once to Pair Key with Value
         # Start with Row-Index-Zero (first row), and Assuming Header
         iRow = 0
@@ -516,9 +519,11 @@ class Cev():
         # Manage the Initial Record Data
         while header:
             # Clean and Split the Heading and Content
-            heading_row = self.record_lines[iRow].replace('"', '').split(',')
+            heading_row = RE_COMMA.split(
+                re.sub('"', '', self.record_lines[iRow])
+            )
             content_row = self.record_lines[iRow + 1]
-            content_row = content_row.replace('"', '').split(',')
+            content_row = RE_COMMA.split(re.sub('"', '', content_row))
             if not len(heading_row) == len(content_row):
                 print(heading_row)
                 print(content_row)
@@ -547,10 +552,16 @@ class Cev():
             # Increment Row Index
             iRow += 2
 
+        # Return the Row Index for Parser Tracking
+        return iRow
+
+    # Define Data Channel Name Parsing Function
+    def __parse_record_load_channel_names(self, iRow):
+        """ Parsing Function to Identify and Load Channel Names """
         # Following the Primary Header Content, a Single Header Remains
         # with the Analog and Digital Channel Names.
         # Split on either a comma (',') or a space (' ')
-        channels = re.split(r',| ', self.record_lines[iRow])
+        channels = RE_CHANNEL_SEP.split(self.record_lines[iRow])
         is_analog = True  # First Channel from Left is Analog
 
         # Identify Channel Names as Analog or Digital
@@ -567,53 +578,84 @@ class Cev():
             elif '' == channel:
                 continue  # Don't Track Empty Channel Names
             # Remove Double Quotes
-            channel = channel.replace('"', '')
+            channel = re.sub('"', '', channel)
             # Channel Must be Valid, Append Name to Either Analog or Digital
             if is_analog:
                 self.analog_channel_ids.append(channel)
             else:
                 self.status_channel_ids.append(channel)
 
-        iRow += 1  # Increment Past the Data Heading Column
-
         # Characterize Number of Channels
         self.analog_count = len(self.analog_channel_ids)
         self.status_count = len(self.status_channel_ids)
 
+    # Define Analog Channel Parsing Function
+    def __parse_record_analog_channels(self, channels):
+        """ Parse the Analog Channels for a Specified Row """
+        # Track Analog Quantities
+        k = 0
+        for i in range(0, self.analog_count):
+            value = float(channels[i])
+            # Verify that Channel Index Shouldn't be Ignored
+            if i not in self._ignored_channels:
+                self.analog_channels[i].append(value)
+            k = i + 2
+        # Return the Monitored Incrementer
+        return k
+
+    # Define Digital Channel Parsing Function
+    def __parse_record_digital_channels(self, digitals_column):
+        """ Parse the Digital Channels for a Specified Row """
+        # Format the Digitals
+        digitals = hex_bits_from_str(re.sub('"', '', digitals_column))
+
+        # Track Digital Quantities
+        for i in range(0, self.status_count):
+            # Verify that Channel Index (Offset by the TRIG channel)
+            # Shouldn't be Ignored
+            if (i + self._trig_column) not in self._ignored_channels:
+                self.status_channels[i].append(digitals[i])
+
+    # Define Data Row Parsing Function
+    def __parse_record_data_rows(self, iRow):
+        """ Parsing Function to Interpret Data Rows of CEV """
         # Build the Channel Lists According to Sizes
-        self.analog_channels = [[] for x in range(self.analog_count)]
-        self.status_channels = [[] for x in range(self.status_count)]
+        self.analog_channels = [[]] * self.analog_count
+        self.status_channels = [[]] * self.status_count
 
         # Iterate over Data Rows to Load Channels
         numRows = len(self.record_lines)
         initRow = iRow
         while iRow < numRows:
-            channels = self.record_lines[iRow].split(',')
-            # Track Analog Quantities
-            k = 0
-            for i in range(0, self.analog_count):
-                value = float(channels[i])
-                # Verify that Channel Index Shouldn't be Ignored
-                if i not in self._ignored_channels:
-                    self.analog_channels[i].append(value)
-                k = i + 2
+            # Collect the Channels List
+            channels = RE_COMMA.split(self.record_lines[iRow])
+
+            # Parse Analogs
+            col_index = self.__parse_record_analog_channels(channels=channels)
 
             # Identify Trigger Data Row
-            if TRIGGER_KEY_CHAR in channels[k-1]:
+            if TRIGGER_KEY_CHAR in channels[col_index - 1]:
                 self._trig_row = iRow - initRow
 
-            # Format the Digitals
-            digital_string = channels[k].replace('"', '')
-            digitals = hex_bits_from_str(digital_string)
-
-            # Track Digital Quantities
-            for i in range(0, self.status_count):
-                # Verify that Channel Index (Offset by the TRIG channel)
-                # Shouldn't be Ignored
-                if (i + self._trig_column) not in self._ignored_channels:
-                    self.status_channels[i].append(digitals[i])
+            # Parse Digitals
+            self.__parse_record_digital_channels(
+                digitals_column=channels[col_index]
+            )
 
             iRow += 1  # Increment Row Index
+
+    # Define Primary Parsing Function
+    def _parse_record(self):
+        """ Primary Parsing Function to Interpret the CEV """
+        # Parse the Header
+        iRow = self.__parse_record_header()
+
+        # Parse the Channel Names
+        self.__parse_record_load_channel_names(iRow=iRow)
+        iRow += 1  # Increment Past the Data Heading Column
+
+        # Parse the Data Rows
+        self.__parse_record_data_rows(iRow=iRow)
 
     # Define Event Trigger Time Evaluator
     def _eval_trigger_time(self):
