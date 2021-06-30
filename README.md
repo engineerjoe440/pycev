@@ -5,7 +5,11 @@
 [![Downloads](https://pepy.tech/badge/pycev)](https://pepy.tech/project/pycev)
 [![Stars](https://img.shields.io/github/stars/engineerjoe440/pycev?logo=github)](https://github.com/engineerjoe440/pycev/)
 [![License](https://img.shields.io/pypi/l/pycev.svg?color=blue)](https://github.com/engineerjoe440/pycev/blob/master/LICENSE.txt)
+
+
 [![Build Status](http://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-CI)](http://jenkins.stanleysolutionsnw.com/job/PyCEV-CI/)
+[![pydocstyle](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml)
+[![pylint](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml)
 
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 
