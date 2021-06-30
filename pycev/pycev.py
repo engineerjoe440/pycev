@@ -62,7 +62,7 @@ FREQUENCY_KEY = "FREQ"
 # Define Function to Evaluate Checksum
 def _eval_checksum(data, constrain=True):
     """
-    *Evaluate the expected checksum for specific data row*
+    Evaluate the expected checksum for specific data row.
 
     This function accepts a string, and calculates the checksum
     of the bytes provided.
@@ -96,7 +96,7 @@ def _eval_checksum(data, constrain=True):
 # Define Function to Cast Hex Byte to "bool-like" List
 def hex_byte_to_bits(hex_byte):
     """
-    *Interpret a single hex character as bits*
+    Interpret a single hex character as bits.
 
     This function will accept a hex byte (two characters, 0-F)
     and cast it to a list of eight bits. Credit to StackOverflow
@@ -129,7 +129,7 @@ def hex_byte_to_bits(hex_byte):
 # Define Function to Evaluate List of Bits from Raw Hex String
 def hex_bits_from_str(hex_string):
     """
-    *Interpret string of hex characters as a list of bits*
+    Interpret string of hex characters as a list of bits.
 
     This function will accept the hex string presented in CEV
     files and construct a list of bits where each bit corresponds
@@ -164,7 +164,7 @@ def hex_bits_from_str(hex_string):
 # Define Function to Interpret Row-Wise Checksum for Validity
 def row_wise_checksum(row_data):
     """
-    *Identify the data and validate it with included checksum*
+    Identify the data and validate it with included checksum.
 
     Events should contain rows of data, where each row appears
     as:
@@ -217,7 +217,7 @@ def row_wise_checksum(row_data):
 # Define Function to Split Event Data from Relay Settings
 def split_event_and_relay_data(data):
     """
-    *Split the Event Data from Relay Settings*
+    Split the Event Data from Relay Settings.
 
     This function accepts the full text from a CEV file, and separates
     the event-record data from the relay's configuration settings.
@@ -251,7 +251,7 @@ def split_event_and_relay_data(data):
 # Define the Primary Class
 class Cev():
     """
-    *SEL CEV File Reader*
+    SEL CEV File Reader.
 
     This class serves to provide functionality to read SEL (Schweitzer
     Engineering Laboratories) Compressed EVent records (CEV files) and
@@ -363,6 +363,8 @@ class Cev():
 
     def __init__(self, file=None, data=None, **kwargs):
         """
+        Prepare CEV Reader.
+
         Class initialization with optional data input methods for file-path
         and raw data as either a string or bytes.
         """
@@ -407,6 +409,14 @@ class Cev():
         self.digital_count = 0
         self.frequency = 0.0
 
+        self.year = 1970
+        self.month = 1
+        self.day = 1
+        self.hour = 0
+        self.min = 0
+        self.sec = 0
+        self.msec = 0
+
         self._ignored_channels = []
         self._trig_column = -1
         self._trig_row = 0
@@ -422,17 +432,17 @@ class Cev():
 
     # Define Simple Method to Identify Class Keys
     def _keys(self):
-        """ Capture Class Attributes as Keys """
+        """Capture Class Attributes as Keys."""
         return self.__dict__.keys()
 
     # Define Simple File Extension Validator
     def _validate_extension(self, file):
-        """ Validate Extension is of *.CEV Format """
+        """Validate Extension is of *.CEV Format."""
         if not os.path.exists(file):
             raise ValueError(
                 "Argument `file` must be a valid file-path to a CEV file."
             )
-        filename, ext = os.path.splitext(file)
+        _, ext = os.path.splitext(file)
         if 'CEV' not in ext.upper():
             # Throw Warning to User
             if not self.ignore_warnings:
@@ -453,7 +463,7 @@ class Cev():
 
     # Define Simple Decoder for Data
     def _decode(self, data, encoding):
-        """ Simply Decode the Data Using the Specified Encoding Format """
+        """Simply Decode the Data Using the Specified Encoding Format."""
         if encoding is not None:
             return data.decode(encoding, self._decode_opt)
         else:
@@ -461,7 +471,7 @@ class Cev():
 
     # Define Function to Prepare Record and Validate Checksums
     def _prepare_and_validate_record(self):
-        """ Simply Split the Record and Settings, then Evaluate Checksums """
+        """Simply Split the Record and Settings, then Evaluate Checksums."""
         # Split Data
         self.record, self.settings = split_event_and_relay_data(self.data)
         valid = True  # Assume Good
@@ -493,7 +503,7 @@ class Cev():
 
     # Define Internal Test to Identify Header
     def _is_header(self, row_data):
-        """ Simple Test Function to Evaluate Whether Row is Header """
+        """Test Function to Evaluate Whether Row is Header."""
         if row_data.startswith('"') and row_data.endswith('"'):
             return True
         else:
@@ -501,12 +511,12 @@ class Cev():
 
     # Define Internal Test to Identify Data Row
     def _is_data(self, row_data):
-        """ Simple Test Function to Evaluate Whether Row isn't Header """
+        """Test Function to Evaluate Whether Row isn't Header."""
         return not self._is_header(row_data=row_data)
 
     # Define Primary Parsing Function
     def _parse_record(self):
-        """ Primary Parsing Function to Interpret the CEV """
+        """Primary Parsing Function to Interpret the CEV."""
         # Operate on "Row-Pairs" with two Rows at Once to Pair Key with Value
         # Start with Row-Index-Zero (first row), and Assuming Header
         iRow = 0
@@ -617,7 +627,7 @@ class Cev():
 
     # Define Event Trigger Time Evaluator
     def _eval_trigger_time(self):
-        """Simple Function to Use Time Information to Identify Trigger Time"""
+        """Use Time Information to Identify Trigger Time."""
         usec = int(self.msec) * 1000
         self.trigger_time = dt.datetime(
             year=int(self.year),
@@ -631,12 +641,12 @@ class Cev():
 
     # Define Frequency Identifier
     def _eval_frequency(self):
-        """Simple function to identify and load the system nominal frequency"""
+        """Identify and load the system nominal frequency."""
         self.frequency = float(self._properties.get(FREQUENCY_KEY, 60.0))
 
     # Define FID Cleaner
     def _clean_fid(self):
-        """Store the 'raw' FID in a New Variable, and Clean Existing FID"""
+        """Store the 'raw' FID in a New Variable, and Clean Existing FID."""
         try:
             self.raw_fid = self.fid
             self.fid = self.fid.split('=')[1]
@@ -645,7 +655,7 @@ class Cev():
 
     # Define Samples-Per-Cycle Evaluator
     def _eval_samples_per_cycle(self):
-        """Identify the Samples/Cycle Indicators, Calculate the Deltas"""
+        """Identify the Samples/Cycle Indicators, Calculate the Deltas."""
         try:
             # Extract the Number of Samples per Cycle, Evaluate Milliseconds
             ms_per_cyc = 1000 / self.frequency
@@ -659,7 +669,7 @@ class Cev():
 
     # Define Timestamp Loader
     def _eval_timestamps(self):
-        """Evaluate event timestamps"""
+        """Evaluate event timestamps."""
         # Calculate the first timestamp
         initTimeDelta = self._analog_samp_timedelta * self._trig_row
         self.time = [self.trigger_time - initTimeDelta]
@@ -671,7 +681,7 @@ class Cev():
     # Define File Loader Method
     def load(self, file, encoding=None):
         """
-        *CEV File Loader Method*
+        *CEV File Loader Method*.
 
         Use this method to load a CEV file, and parse its contents into the
         valuable class attributes and structure.
@@ -719,7 +729,7 @@ class Cev():
     # Define Data Loader Method
     def load_data(self, data, encoding=None):
         """
-        *CEV Data Loader Method*
+        *CEV Data Loader Method*.
 
         Use this method to load the data from a CEV file which has already been
         read, or data which is being streamed to the class (i.e., an active
@@ -776,7 +786,7 @@ class Cev():
     # Define Method to Access the Analog Channel by Name
     def get_analog(self, channel_name):
         """
-        *Extract an analog channel by name*
+        *Extract an analog channel by name*.
 
         Use this method to return the list of analog values
         associated with the particular analog channel with
@@ -809,7 +819,7 @@ class Cev():
     # Define Method to Access the Digital Channel by Name
     def get_status(self, channel_name):
         """
-        *Extract an digital channel by name*
+        *Extract an digital channel by name*.
 
         Use this method to return the list of digital values
         associated with the particular digital channel with
