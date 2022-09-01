@@ -79,110 +79,8 @@ class MalformedNoSampleNumberFound(Exception):
     """CEV is Malformed - Number of Samples Could not be Located."""
 
 
-# Define Function to Evaluate Checksum
-def _eval_checksum(data, constrain=True):
-    """
-    Evaluate the expected checksum for specific data row.
-
-    This function accepts a string, and calculates the checksum
-    of the bytes provided.
-
-    Parameters
-    ----------
-    data:       [str, bytes]
-                The bytestring which should be evaluated for the
-                checksum.
-    constrain:  bool, optional
-                Control to specify whether the value should be
-                constrained to an 8-bit representation, defaults
-                to False.
-
-    Returns
-    -------
-    checksum:   int
-                The fully evaluated checksum.
-    """
-    # Evaluate the sum
-    if isinstance(data, str):
-        checksum = sum(map(ord, data))
-    else:
-        checksum = sum(data)
-    # Cap the Value if Needed
-    if constrain:
-        checksum = checksum & 0xffff  # Bit-wise AND with 16-bit maximum
-    return checksum
-
-
-# Define Function to Cast Hex Byte to "bool-like" List
-def hex_byte_to_bits(hex_byte):
-    """
-    Interpret a single hex character as bits.
-
-    This function will accept a hex byte (two characters, 0-F)
-    and cast it to a list of eight bits. Credit to StackOverflow
-    user: "Beebs" for concise function implementation.
-
-    Parameters
-    ----------
-    hex_byte:   str
-                String of two characters representing the byte
-                in hex.
-
-    Returns
-    -------
-    bits:       list of int
-                List of eight bits (0/1) representing each bit
-                position in the input byte.
-
-    See Also
-    --------
-    hex_bits_from_str   : Determine the bit-structure of multiple
-                          hex bytes in a string.
-    """
-    binary_byte = bin(int(hex_byte, base=16))
-    # Use zfill to pad the string with zeros as we want
-    # all 8 digits of the byte.
-    bits_string = binary_byte[2:].zfill(8)
-    return [int(bit) for bit in bits_string]
-
-
-# Define Function to Evaluate List of Bits from Raw Hex String
-def hex_bits_from_str(hex_string):
-    """
-    Interpret string of hex characters as a list of bits.
-
-    This function will accept the hex string presented in CEV
-    files and construct a list of bits where each bit corresponds
-    directly to one of the relay wordbits.
-
-    Parameters
-    ----------
-    hex_string: str
-                String of hex characters to be interpreted.
-
-    Returns
-    -------
-    bits:       list of int
-                List of bits (int; 0/1) as interpreted from
-                the hex string input.
-
-    See Also
-    --------
-    hex_byte_to_bits    : Determine the bit-structure of a single
-                          hex byte
-    """
-    bits = []
-    # Iteratively Process the Hex String
-    while len(hex_string) > 0:
-        hex_byte = hex_string[:2]
-        hex_string = hex_string[2:]
-        # Identify the Bits
-        bits.extend(hex_byte_to_bits(hex_byte))
-    return bits
-
-
 # Define Function to Interpret Row-Wise Checksum for Validity
-def row_wise_checksum(row_data):
+def row_wise_checksum(row_data, constrain=True):
     """
     Identify the data and validate it with included checksum.
 
@@ -223,8 +121,14 @@ def row_wise_checksum(row_data):
         byteorder='big',
         signed=False
     )
-    # Calculate Checksum
-    checksum = _eval_checksum(data=row_contents)
+    # Evaluate the Checksum
+    if isinstance(row_contents, str):
+        checksum = sum(map(ord, row_contents))
+    else:
+        checksum = sum(row_contents)
+    # Cap the Value if Needed
+    if constrain:
+        checksum = checksum & 0xffff  # Bit-wise AND with 16-bit maximum
     # Remove Trailing Comma if Present
     if row_contents.endswith(','):
         row_contents = row_contents[:-1]  # Trim Comma
@@ -646,7 +550,17 @@ class Cev():
 
             # Format the Digitals
             digital_string = channels[k].replace('"', '')
-            digitals = hex_bits_from_str(digital_string)
+            digitals = []
+            # Iteratively Process the Hex String
+            while len(digital_string) > 0:
+                hex_byte = digital_string[:2]
+                digital_string = digital_string[2:]
+                # Identify the Bits
+                binary_byte = bin(int(hex_byte, base=16))
+                # Use zfill to pad the string with zeros as we want
+                # all 8 digits of the byte.
+                bits_string = binary_byte[2:].zfill(8)
+                digitals.extend([int(bit) for bit in bits_string])
 
             # Track Digital Quantities
             for i in range(0, self.status_count):
