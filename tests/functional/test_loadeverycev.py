@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import pycev
 
 # Define the Path to CEV Files, and Load the Data from One Such File
-cev_dir = os.path.join(os.getcwd(), 'test', 'cev-files')
+cev_dir = os.path.join(os.getcwd(), 'pycev-test-ci', 'cev-files')
 cev_file_list = [f for f in os.listdir(cev_dir) if os.path.isfile(f)]
 
 # Test Each Available CEV file. The expectation is that many will fail due to

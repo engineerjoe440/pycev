@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import pycev
 
 # Define the Path to CEV Files, and Load the Data from One Such File
-cev_dir = os.path.join( os.getcwd(), 'test', 'cev-files' )
+cev_dir = os.path.join( os.getcwd(), 'pycev-test-ci', 'cev-files' )
 sel_351s_event = os.path.join( cev_dir, 'trusted-event-file.CEV' )
 with open(sel_351s_event, encoding="utf-8") as f:
     relay_data = f.read()

@@ -359,6 +359,13 @@ class Cev():
     trigger_time:           datetime
                             Date-time structure indicating when the event
                             was "triggered" by protection logic in the relay.
+    
+    Examples
+    --------
+    >>> from pycev import CEV
+    >>> # Load a file and parse, directly.
+    >>> record = CEV(file="./event-report.cev")
+    >>> print("Trigger time = {}s".format(record.trigger_time))
     """
 
     def __init__(self, file=None, data=None, **kwargs):
