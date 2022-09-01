@@ -1,3 +1,6 @@
+# Ignore Local Testing File
+*ignored_test.py
+
 # Compressed EVent Records (CEV files)
 *.cev
 *.CEV
