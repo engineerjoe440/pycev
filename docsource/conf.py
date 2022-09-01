@@ -55,9 +55,26 @@ extensions = [
     'sphinx.ext.viewcode',
     'numpydoc',
     'sphinx_sitemap',
+    'myst_parser',
 ]
 autosummary_generate = True
 numpydoc_show_class_members = True
+
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

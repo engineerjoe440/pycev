@@ -65,8 +65,8 @@ To install `pycev` from GitHub:
 3. Open a terminal (command-prompt) and navigate to the new folder that's been unzipped.
 (*Hint:* Use `cd <the-path-to-the-folder-you-unzipped-in>/pycev`)
 4. Use `pip` or `python` to install with the following commands, respectively:
-    - `$> pip install .`
-    - `$> python setup.py install`
+    - `$ pip install .`
+    - `$ python setup.py install`
 5. Verify that it's been installed by opening a Python instance and importing:
     `>>> import pycev` If no errors arise, the package has been installed.
 
