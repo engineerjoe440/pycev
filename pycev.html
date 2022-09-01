@@ -47,7 +47,7 @@ This class can be used to interpret SEL CEV files, and provides access
 to the various informational data-points for the event record.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pycev.Cev">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">Cev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">Cev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev" title="Permalink to this definition">¶</a></dt>
 <dd><p>SEL CEV File Reader.</p>
 <p>This class serves to provide functionality to read SEL (Schweitzer
 Engineering Laboratories) Compressed EVent records (CEV files) and
@@ -319,6 +319,13 @@ was “triggered” by protection logic in the relay.</p>
 </dl>
 </dd></dl>
 
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trigger time = </span><span class="si">{}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">trigger_time</span><span class="p">))</span>
+</pre></div>
+</div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -341,7 +348,7 @@ was “triggered” by protection logic in the relay.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pycev.Cev.get_analog">
-<span class="sig-name descname"><span class="pre">get_analog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_analog" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_analog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_analog" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an analog channel by name</em>.</p>
 <p>Use this method to return the list of analog values
 associated with the particular analog channel with
@@ -368,11 +375,20 @@ list.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">()</span> <span class="c1"># Create the parser instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">get_analog</span><span class="p">(</span><span class="s2">&quot;FREQ&quot;</span><span class="p">)</span>
+<span class="go">[...]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycev.Cev.get_digital">
-<span class="sig-name descname"><span class="pre">get_digital</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_digital" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_digital</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_digital" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an digital channel by name</em>.</p>
 <p>Use this method to return the list of digital values
 associated with the particular digital channel with
@@ -387,7 +403,7 @@ should be extracted.</p>
 list.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of float</p>
+<dd class="field-odd"><p>list of bool</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -400,12 +416,23 @@ list.</p>
 <dt><a class="reference internal" href="#pycev.Cev.get_digital" title="pycev.Cev.get_digital"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_digital</span></code></a></dt><dd><p>Collect the digital channel status for a specified name.</p>
 </dd>
 </dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">()</span> <span class="c1"># Create the parser instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="s2">&quot;TRIPLED&quot;</span><span class="p">)</span>
+<span class="go">[...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">get_digital</span><span class="p">(</span><span class="s2">&quot;TRIPLED&quot;</span><span class="p">)</span>
+<span class="go">[...]</span>
+</pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycev.Cev.get_status">
-<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_status" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Extract an digital channel by name</em>.</p>
 <p>Use this method to return the list of digital values
 associated with the particular digital channel with
@@ -420,7 +447,7 @@ should be extracted.</p>
 list.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of float</p>
+<dd class="field-odd"><p>list of bool</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -434,11 +461,22 @@ list.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">()</span> <span class="c1"># Create the parser instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="s2">&quot;TRIPLED&quot;</span><span class="p">)</span>
+<span class="go">[...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">get_digital</span><span class="p">(</span><span class="s2">&quot;TRIPLED&quot;</span><span class="p">)</span>
+<span class="go">[...]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycev.Cev.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>CEV File Loader Method</em>.</p>
 <p>Use this method to load a CEV file, and parse its contents into the
 valuable class attributes and structure.</p>
@@ -465,23 +503,31 @@ format ‘utf-8’, for example.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – If the file cannot be located on the system</p></li>
-<li><p><strong>ValueError</strong> – If the file contains a header and content row pair which do not
+<li><p><strong>FileNotFoundError</strong> – If the file cannot be located on the system</p></li>
+<li><p><strong>MalformedHeadingDataMismatch</strong> – If the file contains a header and content row pair which do not
 share an equal number of columns.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Warns<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>UserWarning</strong> – If the uppercase-cast file extension is not “.CEV”</p></li>
-<li><p><strong>UserWarning</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p></li>
+<li><p><strong>UnexpectedFileExtension</strong> – If the uppercase-cast file extension is not “.CEV”</p></li>
+<li><p><strong>MalformedChecksumFailure</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">()</span> <span class="c1"># Create the parser instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trigger time = </span><span class="si">{}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">trigger_time</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycev.Cev.load_data">
-<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycev.Cev.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>CEV Data Loader Method</em>.</p>
 <p>Use this method to load the data from a CEV file which has already been
 read, or data which is being streamed to the class (i.e., an active
@@ -490,10 +536,7 @@ class attributes and structures appropriately.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file</strong> (<em>str</em>) – String describing the relative or fully qualified path to
-the CEV file that should be read. Optionally used during
-class initialization, may also be loaded using the <cite>load</cite>
-method.</p></li>
+<li><p><strong>data</strong> (<em>[</em><em>str</em><em>, </em><em>bytes</em><em>]</em>) – String of the full file content.</p></li>
 <li><p><strong>encoding</strong> (<em>str</em><em>, </em><em>optional</em>) – String specifying the encoding format (if required) in
 which the file is stored. This may be used for files of
 format ‘utf-8’, for example.</p></li>
@@ -509,13 +552,23 @@ format ‘utf-8’, for example.</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the file contains a header and content row pair which do not
+<dd class="field-odd"><p><strong>MalformedHeadingDataMismatch</strong> – If the file contains a header and content row pair which do not
 share an equal number of columns.</p>
 </dd>
 <dt class="field-even">Warns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>UserWarning</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p>
+<dd class="field-even"><p><strong>MalformedChecksumFailure</strong> – If any of the CEV line-wise checksums do not evaluate successfully</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycev</span> <span class="kn">import</span> <span class="n">CEV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load a file and parse, directly.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span> <span class="o">=</span> <span class="n">CEV</span><span class="p">()</span> <span class="c1"># Create the parser instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./event-report.cev&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">record</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trigger time = </span><span class="si">{}</span><span class="s2">s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">trigger_time</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
