@@ -1,7 +1,6 @@
 wheel
 sphinx
 numpydoc
-myst-parser[linkify]
 sphinx-sitemap
 sphinx-material
 coverage-badge
