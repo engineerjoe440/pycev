@@ -357,110 +357,8 @@
     <span class="sd">"""CEV is Malformed - Number of Samples Could not be Located."""</span>
 
 
-<span class="c1"># Define Function to Evaluate Checksum</span>
-<span class="k">def</span> <span class="nf">_eval_checksum</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">"""</span>
-<span class="sd">    Evaluate the expected checksum for specific data row.</span>
-
-<span class="sd">    This function accepts a string, and calculates the checksum</span>
-<span class="sd">    of the bytes provided.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    data:       [str, bytes]</span>
-<span class="sd">                The bytestring which should be evaluated for the</span>
-<span class="sd">                checksum.</span>
-<span class="sd">    constrain:  bool, optional</span>
-<span class="sd">                Control to specify whether the value should be</span>
-<span class="sd">                constrained to an 8-bit representation, defaults</span>
-<span class="sd">                to False.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    checksum:   int</span>
-<span class="sd">                The fully evaluated checksum.</span>
-<span class="sd">    """</span>
-    <span class="c1"># Evaluate the sum</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="c1"># Cap the Value if Needed</span>
-    <span class="k">if</span> <span class="n">constrain</span><span class="p">:</span>
-        <span class="n">checksum</span> <span class="o">=</span> <span class="n">checksum</span> <span class="o">&amp;</span> <span class="mh">0xffff</span>  <span class="c1"># Bit-wise AND with 16-bit maximum</span>
-    <span class="k">return</span> <span class="n">checksum</span>
-
-
-<span class="c1"># Define Function to Cast Hex Byte to "bool-like" List</span>
-<div class="viewcode-block" id="hex_byte_to_bits"><a class="viewcode-back" href="../../pycev.html#pycev.hex_byte_to_bits">[docs]</a><span class="k">def</span> <span class="nf">hex_byte_to_bits</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">):</span>
-    <span class="sd">"""</span>
-<span class="sd">    Interpret a single hex character as bits.</span>
-
-<span class="sd">    This function will accept a hex byte (two characters, 0-F)</span>
-<span class="sd">    and cast it to a list of eight bits. Credit to StackOverflow</span>
-<span class="sd">    user: "Beebs" for concise function implementation.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    hex_byte:   str</span>
-<span class="sd">                String of two characters representing the byte</span>
-<span class="sd">                in hex.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    bits:       list of int</span>
-<span class="sd">                List of eight bits (0/1) representing each bit</span>
-<span class="sd">                position in the input byte.</span>
-
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    hex_bits_from_str   : Determine the bit-structure of multiple</span>
-<span class="sd">                          hex bytes in a string.</span>
-<span class="sd">    """</span>
-    <span class="n">binary_byte</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
-    <span class="c1"># Use zfill to pad the string with zeros as we want</span>
-    <span class="c1"># all 8 digits of the byte.</span>
-    <span class="n">bits_string</span> <span class="o">=</span> <span class="n">binary_byte</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">bits_string</span><span class="p">]</span></div>
-
-
-<span class="c1"># Define Function to Evaluate List of Bits from Raw Hex String</span>
-<div class="viewcode-block" id="hex_bits_from_str"><a class="viewcode-back" href="../../pycev.html#pycev.hex_bits_from_str">[docs]</a><span class="k">def</span> <span class="nf">hex_bits_from_str</span><span class="p">(</span><span class="n">hex_string</span><span class="p">):</span>
-    <span class="sd">"""</span>
-<span class="sd">    Interpret string of hex characters as a list of bits.</span>
-
-<span class="sd">    This function will accept the hex string presented in CEV</span>
-<span class="sd">    files and construct a list of bits where each bit corresponds</span>
-<span class="sd">    directly to one of the relay wordbits.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    hex_string: str</span>
-<span class="sd">                String of hex characters to be interpreted.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    bits:       list of int</span>
-<span class="sd">                List of bits (int; 0/1) as interpreted from</span>
-<span class="sd">                the hex string input.</span>
-
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    hex_byte_to_bits    : Determine the bit-structure of a single</span>
-<span class="sd">                          hex byte</span>
-<span class="sd">    """</span>
-    <span class="n">bits</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># Iteratively Process the Hex String</span>
-    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">hex_string</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">hex_byte</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">hex_string</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
-        <span class="c1"># Identify the Bits</span>
-        <span class="n">bits</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">hex_byte_to_bits</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">bits</span></div>
-
-
 <span class="c1"># Define Function to Interpret Row-Wise Checksum for Validity</span>
-<div class="viewcode-block" id="row_wise_checksum"><a class="viewcode-back" href="../../pycev.html#pycev.row_wise_checksum">[docs]</a><span class="k">def</span> <span class="nf">row_wise_checksum</span><span class="p">(</span><span class="n">row_data</span><span class="p">):</span>
+<div class="viewcode-block" id="row_wise_checksum"><a class="viewcode-back" href="../../pycev.html#pycev.row_wise_checksum">[docs]</a><span class="k">def</span> <span class="nf">row_wise_checksum</span><span class="p">(</span><span class="n">row_data</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Identify the data and validate it with included checksum.</span>
 
@@ -501,8 +399,14 @@
         <span class="n">byteorder</span><span class="o">=</span><span class="s1">'big'</span><span class="p">,</span>
         <span class="n">signed</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
-    <span class="c1"># Calculate Checksum</span>
-    <span class="n">checksum</span> <span class="o">=</span> <span class="n">_eval_checksum</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">row_contents</span><span class="p">)</span>
+    <span class="c1"># Evaluate the Checksum</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row_contents</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span> <span class="n">row_contents</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">row_contents</span><span class="p">)</span>
+    <span class="c1"># Cap the Value if Needed</span>
+    <span class="k">if</span> <span class="n">constrain</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">checksum</span> <span class="o">&amp;</span> <span class="mh">0xffff</span>  <span class="c1"># Bit-wise AND with 16-bit maximum</span>
     <span class="c1"># Remove Trailing Comma if Present</span>
     <span class="k">if</span> <span class="n">row_contents</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">','</span><span class="p">):</span>
         <span class="n">row_contents</span> <span class="o">=</span> <span class="n">row_contents</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Trim Comma</span>
@@ -924,7 +828,17 @@
 
             <span class="c1"># Format the Digitals</span>
             <span class="n">digital_string</span> <span class="o">=</span> <span class="n">channels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
-            <span class="n">digitals</span> <span class="o">=</span> <span class="n">hex_bits_from_str</span><span class="p">(</span><span class="n">digital_string</span><span class="p">)</span>
+            <span class="n">digitals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># Iteratively Process the Hex String</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">digital_string</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">hex_byte</span> <span class="o">=</span> <span class="n">digital_string</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">digital_string</span> <span class="o">=</span> <span class="n">digital_string</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+                <span class="c1"># Identify the Bits</span>
+                <span class="n">binary_byte</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+                <span class="c1"># Use zfill to pad the string with zeros as we want</span>
+                <span class="c1"># all 8 digits of the byte.</span>
+                <span class="n">bits_string</span> <span class="o">=</span> <span class="n">binary_byte</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+                <span class="n">digitals</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">bits_string</span><span class="p">])</span>
 
             <span class="c1"># Track Digital Quantities</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_count</span><span class="p">):</span>

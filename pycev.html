@@ -802,63 +802,8 @@ share an equal number of columns.</p>
 <section id="additional-package-functions">
 <h2 id="additional-package-functions">Additional Package Functions<a class="headerlink" href="#additional-package-functions" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="pycev.hex_byte_to_bits">
-<span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">hex_byte_to_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex_byte</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycev/pycev.html#hex_byte_to_bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycev.hex_byte_to_bits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interpret a single hex character as bits.</p>
-<p>This function will accept a hex byte (two characters, 0-F)
-and cast it to a list of eight bits. Credit to StackOverflow
-user: “Beebs” for concise function implementation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>hex_byte</strong> (<em>str</em>) – String of two characters representing the byte
-in hex.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>bits</strong> – List of eight bits (0/1) representing each bit
-position in the input byte.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of int</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#pycev.hex_bits_from_str" title="pycev.hex_bits_from_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hex_bits_from_str</span></code></a></dt><dd><p>Determine the bit-structure of multiple hex bytes in a string.</p>
-</dd>
-</dl>
-</div>
-</dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="pycev.hex_bits_from_str">
-<span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">hex_bits_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex_string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycev/pycev.html#hex_bits_from_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycev.hex_bits_from_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interpret string of hex characters as a list of bits.</p>
-<p>This function will accept the hex string presented in CEV
-files and construct a list of bits where each bit corresponds
-directly to one of the relay wordbits.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>hex_string</strong> (<em>str</em>) – String of hex characters to be interpreted.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>bits</strong> – List of bits (int; 0/1) as interpreted from
-the hex string input.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of int</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="#pycev.hex_byte_to_bits" title="pycev.hex_byte_to_bits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hex_byte_to_bits</span></code></a></dt><dd><p>Determine the bit-structure of a single hex byte</p>
-</dd>
-</dl>
-</div>
-</dd></dl>
-<dl class="py function">
 <dt class="sig sig-object py" id="pycev.row_wise_checksum">
-<span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">row_wise_checksum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycev/pycev.html#row_wise_checksum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycev.row_wise_checksum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pycev.</span></span><span class="sig-name descname"><span class="pre">row_wise_checksum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constrain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycev/pycev.html#row_wise_checksum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycev.row_wise_checksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Identify the data and validate it with included checksum.</p>
 <p>Events should contain rows of data, where each row appears
 as:</p>
