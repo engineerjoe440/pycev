@@ -19,7 +19,7 @@
 
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 
-## Description:
+## Description
 This project, `pycev`, is intended to provide a means to interpret and interact with SEL CEV files
 for scientific analysis using common Python tools such as NumPy, Pandas, Matplotlib, and others.
 This package provides a parser and manager system to load and interact with SEL Compressed Event
@@ -41,7 +41,7 @@ of use-cases, any time this project is used, it should first be thoroughly teste
 project is not intended to serve protection-class systems in any capacity. It should
 primarily be used for research, exploration, and other learning objectives.*
 
-## Installation:
+## Installation
 
 **From PyPI as a Python Package**
 
@@ -68,7 +68,7 @@ download the `pycev.py` file from GitHub (you'll want
 [this file](https://github.com/engineerjoe440/pycev/blob/main/pycev/pycev.py) exactly)
 and save it wherever you need it! Then, just `import pycev` and away you go!
 
-## Contributing:
+## Contributing
 
 Want to get involved? We'd love to have your help!
 
@@ -78,7 +78,19 @@ bug, or just have questions, jump over to the
 
 If you want to add features, or contribute yourself, feel free to open a pull-request.
 
-### Contact Info:
+#### Running Tests Locally
+
+To run tests locally, [`pytest`](https://docs.pytest.org/en/7.1.x/) is required,
+then you may simply run the command:
+
+```shell
+$ pytest tests/unit
+```
+
+Not all tests can be run, locally, since the functional tests require additional
+resources provided by a Jenkins runner managed by Joe Stanley.
+
+### Contact Info
 :information_source: *As mentioned in the
 [caution](https://github.com/engineerjoe440/pycev#warning-caution) above, this
 project is not associated with Schweitzer Engineering Laboratories (SEL) in any
