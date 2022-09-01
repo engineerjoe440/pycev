@@ -1,3 +1,4 @@
+################################################################################
 """
 pycev: A compressed event record reader for SEL CEV files.
 
@@ -36,11 +37,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+################################################################################
 
 # Standard Imports
 import os
 import re
 import inspect
+from typing import Union
 import warnings
 import datetime as dt
 from collections import namedtuple
@@ -59,110 +62,25 @@ TRIGGER_KEY_CHAR = ">"
 FREQUENCY_KEY = "FREQ"
 
 
-# Define Function to Evaluate Checksum
-def _eval_checksum(data, constrain=True):
-    """
-    Evaluate the expected checksum for specific data row.
+# Custom Exceptions and Warnings
+class MalformedChecksumFailure(UserWarning):
+    """Record data appears to be malformed, and fails checksum validation."""
 
-    This function accepts a string, and calculates the checksum
-    of the bytes provided.
+class UnexpectedFileExtension(UserWarning):
+    """File does not appear to use expected "CEV" extension."""
 
-    Parameters
-    ----------
-    data:       [str, bytes]
-                The bytestring which should be evaluated for the
-                checksum.
-    constrain:  bool, optional
-                Control to specify whether the value should be
-                constrained to an 8-bit representation, defaults
-                to False.
+class MalformedHeadingDataMismatch(Exception):
+    """CEV is Malformed - Heading and Data Section Lengths do not Match."""
 
-    Returns
-    -------
-    checksum:   int
-                The fully evaluated checksum.
-    """
-    # Evaluate the sum
-    if isinstance(data, str):
-        checksum = sum(map(ord, data))
-    else:
-        checksum = sum(data)
-    # Cap the Value if Needed
-    if constrain:
-        checksum = checksum & 0xffff  # Bit-wise AND with 16-bit maximum
-    return checksum
+class MalformedNoFIDFound(Exception):
+    """CEV is Malformed - FID String Could not be Located."""
 
-
-# Define Function to Cast Hex Byte to "bool-like" List
-def hex_byte_to_bits(hex_byte):
-    """
-    Interpret a single hex character as bits.
-
-    This function will accept a hex byte (two characters, 0-F)
-    and cast it to a list of eight bits. Credit to StackOverflow
-    user: "Beebs" for concise function implementation.
-
-    Parameters
-    ----------
-    hex_byte:   str
-                String of two characters representing the byte
-                in hex.
-
-    Returns
-    -------
-    bits:       list of int
-                List of eight bits (0/1) representing each bit
-                position in the input byte.
-
-    See Also
-    --------
-    hex_bits_from_str   : Determine the bit-structure of multiple
-                          hex bytes in a string.
-    """
-    binary_byte = bin(int(hex_byte, base=16))
-    # Use zfill to pad the string with zeros as we want
-    # all 8 digits of the byte.
-    bits_string = binary_byte[2:].zfill(8)
-    return [int(bit) for bit in bits_string]
-
-
-# Define Function to Evaluate List of Bits from Raw Hex String
-def hex_bits_from_str(hex_string):
-    """
-    Interpret string of hex characters as a list of bits.
-
-    This function will accept the hex string presented in CEV
-    files and construct a list of bits where each bit corresponds
-    directly to one of the relay wordbits.
-
-    Parameters
-    ----------
-    hex_string: str
-                String of hex characters to be interpreted.
-
-    Returns
-    -------
-    bits:       list of int
-                List of bits (int; 0/1) as interpreted from
-                the hex string input.
-
-    See Also
-    --------
-    hex_byte_to_bits    : Determine the bit-structure of a single
-                          hex byte
-    """
-    bits = []
-    # Iteratively Process the Hex String
-    while len(hex_string) > 0:
-        hex_byte = hex_string[:2]
-        hex_string = hex_string[2:]
-        # Identify the Bits
-        bits.extend(hex_byte_to_bits(hex_byte))
-    return bits
+class MalformedNoSampleNumberFound(Exception):
+    """CEV is Malformed - Number of Samples Could not be Located."""
 
 
 # Define Function to Interpret Row-Wise Checksum for Validity
-def row_wise_checksum(row_data):
+def row_wise_checksum(row_data, constrain=True):
     """
     Identify the data and validate it with included checksum.
 
@@ -201,10 +119,16 @@ def row_wise_checksum(row_data):
     checksum_int = int.from_bytes(
         bytes.fromhex(checksum_str),
         byteorder='big',
-        signed=True
+        signed=False
     )
-    # Calculate Checksum
-    checksum = _eval_checksum(data=row_contents)
+    # Evaluate the Checksum
+    if isinstance(row_contents, str):
+        checksum = sum(map(ord, row_contents))
+    else:
+        checksum = sum(row_contents)
+    # Cap the Value if Needed
+    if constrain:
+        checksum = checksum & 0xffff  # Bit-wise AND with 16-bit maximum
     # Remove Trailing Comma if Present
     if row_contents.endswith(','):
         row_contents = row_contents[:-1]  # Trim Comma
@@ -359,9 +283,17 @@ class Cev():
     trigger_time:           datetime
                             Date-time structure indicating when the event
                             was "triggered" by protection logic in the relay.
+
+    Examples
+    --------
+    >>> from pycev import CEV
+    >>> # Load a file and parse, directly.
+    >>> record = CEV(file="./event-report.cev")
+    >>> print("Trigger time = {}s".format(record.trigger_time))
     """
 
-    def __init__(self, file=None, data=None, **kwargs):
+    def __init__(self, file: str = None, data: Union[str, bytes] = None,
+                 **kwargs):
         """
         Prepare CEV Reader.
 
@@ -425,9 +357,11 @@ class Cev():
         self._properties = {}  # Empty Dictionary of the Keys
 
         # Prepare Data or File if Provided
-        if file is not None:
+        if isinstance(file, (str, bytes)):
             self.load(file=file, encoding=encoding)
-        elif data is not None:
+        elif hasattr(file, "read"): # Probably a file-like object?
+            self.load_data(data=file.read(), encoding=encoding)
+        elif isinstance(data, (str, bytes)):
             self.load_data(data=data, encoding=encoding)
 
     # Define Simple Method to Identify Class Keys
@@ -439,7 +373,7 @@ class Cev():
     def _validate_extension(self, file):
         """Validate Extension is of *.CEV Format."""
         if not os.path.exists(file):
-            raise ValueError(
+            raise FileNotFoundError(
                 "Argument `file` must be a valid file-path to a CEV file."
             )
         _, ext = os.path.splitext(file)
@@ -455,7 +389,7 @@ class Cev():
                         'File does not appear to use "CEV" extension,' +
                         f' instead is "{ext}".'
                     ),
-                    category=UserWarning,
+                    category=UnexpectedFileExtension,
                     filename=callfile,
                     lineno=lineno,
                 )
@@ -474,17 +408,18 @@ class Cev():
         """Simply Split the Record and Settings, then Evaluate Checksums."""
         # Split Data
         self.record, self.settings = split_event_and_relay_data(self.data)
-        valid = True  # Assume Good
+        invalid_lines = {}
         # Evaluate Record Checksums
-        for line in self.record.split('\n'):
+        for i, line in enumerate(self.record.split('\n')):
             if line == '' or (line is None) or line == ' ':
                 continue
             # Collect Line Data and
             content, validity = row_wise_checksum(line)
             self.record_lines.append(content)
-            valid = valid and validity
+            if not validity:
+                invalid_lines[i + 1] = content
         # Throw Warning to User
-        if (not valid) and (not self.ignore_warnings):
+        if invalid_lines and (not self.ignore_warnings):
             # Capture Pertinent Information
             parent = inspect.stack()[2]
             callfile = parent.filename
@@ -492,14 +427,15 @@ class Cev():
             warnings.showwarning(
                 message=(
                     'Record data appears to be malformed, '
-                    'and fails checksum validation.'
+                    'and fails checksum validation for lines: '
+                    ", ".join([str(ind) for ind in invalid_lines])
                 ),
-                category=UserWarning,
+                category=MalformedChecksumFailure,
                 filename=callfile,
                 lineno=lineno,
             )
         # Return the Validity Signal
-        return valid
+        return len(invalid_lines) == 0
 
     # Define Internal Test to Identify Header
     def _is_header(self, row_data):
@@ -532,7 +468,7 @@ class Cev():
             if not len(heading_row) == len(content_row):
                 print(heading_row)
                 print(content_row)
-                raise ValueError(
+                raise MalformedHeadingDataMismatch(
                     "CEV may be malformed, heading and data length don't match"
                 )
             # Load the Data into Class Keys
@@ -614,7 +550,17 @@ class Cev():
 
             # Format the Digitals
             digital_string = channels[k].replace('"', '')
-            digitals = hex_bits_from_str(digital_string)
+            digitals = []
+            # Iteratively Process the Hex String
+            while len(digital_string) > 0:
+                hex_byte = digital_string[:2]
+                digital_string = digital_string[2:]
+                # Identify the Bits
+                binary_byte = bin(int(hex_byte, base=16))
+                # Use zfill to pad the string with zeros as we want
+                # all 8 digits of the byte.
+                bits_string = binary_byte[2:].zfill(8)
+                digitals.extend([int(bit) for bit in bits_string])
 
             # Track Digital Quantities
             for i in range(0, self.status_count):
@@ -650,8 +596,10 @@ class Cev():
         try:
             self.raw_fid = self.fid
             self.fid = self.fid.split('=')[1]
-        except Exception:
-            raise ValueError("Failed to load relay FID from CEV")
+        except Exception as err:
+            raise MalformedNoFIDFound(
+                "Failed to load relay FID from CEV"
+            ) from err
 
     # Define Samples-Per-Cycle Evaluator
     def _eval_samples_per_cycle(self):
@@ -661,8 +609,10 @@ class Cev():
             ms_per_cyc = 1000 / self.frequency
             analog_ms = ms_per_cyc / float(self._properties[ANALOG_SAMPLES])
             digital_ms = ms_per_cyc / float(self._properties[DIGITAL_SAMPLES])
-        except KeyError:
-            raise ValueError("Failed to identify number of samples per cycle")
+        except KeyError as err:
+            raise MalformedNoSampleNumberFound(
+                "Failed to identify number of samples per cycle"
+            ) from err
         # Prepare the TimeDeltas
         self._analog_samp_timedelta = dt.timedelta(milliseconds=analog_ms)
         self._digital_samp_timedelta = dt.timedelta(milliseconds=digital_ms)
@@ -679,7 +629,7 @@ class Cev():
             self.time.append(self.time[-1] + self._analog_samp_timedelta)
 
     # Define File Loader Method
-    def load(self, file, encoding=None):
+    def load(self, file: str, encoding: str = None):
         """
         *CEV File Loader Method*.
 
@@ -705,29 +655,41 @@ class Cev():
 
         Raises
         ------
-        ValueError
+        FileNotFoundError
             If the file cannot be located on the system
-        ValueError
+        MalformedHeadingDataMismatch
             If the file contains a header and content row pair which do not
             share an equal number of columns.
 
         Warns
         -----
-        UserWarning
+        UnexpectedFileExtension
             If the uppercase-cast file extension is not ".CEV"
-        UserWarning
+        MalformedChecksumFailure
             If any of the CEV line-wise checksums do not evaluate successfully
+
+        Examples
+        --------
+        >>> from pycev import CEV
+        >>> # Load a file and parse, directly.
+        >>> record = CEV() # Create the parser instance
+        >>> record.load(file="./event-report.cev")
+        >>> print("Trigger time = {}s".format(record.trigger_time))
         """
-        # Validate file Extension
-        self._validate_extension(file)
-        # Read File with Encoding
-        with open(file, 'r', encoding=encoding) as fObj:
-            self.data = fObj.read()  # Gather ALL Data From File
+        # Switch between Handling File-Path, or File-Like-Object
+        if isinstance(file, str):
+            # Validate file Extension
+            self._validate_extension(file)
+            # Read File with Encoding
+            with open(file, 'r', encoding=encoding) as file_obj:
+                self.data = file_obj.read()  # Gather ALL Data From File
+        elif hasattr(file, "read"):
+            self.data = file.read()
         # Process the Data and Load Record
         self.load_data(data=None)
 
     # Define Data Loader Method
-    def load_data(self, data, encoding=None):
+    def load_data(self, data: Union[str, bytes], encoding: str = None):
         """
         *CEV Data Loader Method*.
 
@@ -738,11 +700,8 @@ class Cev():
 
         Parameters
         ----------
-        file:       str
-                    String describing the relative or fully qualified path to
-                    the CEV file that should be read. Optionally used during
-                    class initialization, may also be loaded using the `load`
-                    method.
+        data:       [str, bytes]
+                    String of the full file content.
         encoding:   str, optional
                     String specifying the encoding format (if required) in
                     which the file is stored. This may be used for files of
@@ -754,14 +713,24 @@ class Cev():
 
         Raises
         ------
-        ValueError
+        MalformedHeadingDataMismatch
             If the file contains a header and content row pair which do not
             share an equal number of columns.
 
         Warns
         -----
-        UserWarning
+        MalformedChecksumFailure
             If any of the CEV line-wise checksums do not evaluate successfully
+
+        Examples
+        --------
+        >>> from pycev import CEV
+        >>> # Load a file and parse, directly.
+        >>> record = CEV() # Create the parser instance
+        >>> with open("./event-report.cev", 'r') as file:
+        ...     data = file.read()
+        >>> record.load_data(data=data)
+        >>> print("Trigger time = {}s".format(record.trigger_time))
         """
         # Method is Called Internally with `data=None`
         # Don't Try Loading in this Case
@@ -784,7 +753,7 @@ class Cev():
         self._eval_timestamps()
 
     # Define Method to Access the Analog Channel by Name
-    def get_analog(self, channel_name):
+    def get_analog(self, channel_name: str):
         """
         *Extract an analog channel by name*.
 
@@ -810,6 +779,15 @@ class Cev():
                       specified name.
         get_digital : Collect the digital channel status for a
                       specified name.
+
+        Examples
+        --------
+        >>> from pycev import CEV
+        >>> # Load a file and parse, directly.
+        >>> record = CEV() # Create the parser instance
+        >>> record.load(file="./event-report.cev")
+        >>> record.get_analog("FREQ")
+        [...]
         """
         # Identify the Analog Channel Index
         channel_index = self.analog_channel_ids.index(channel_name)
@@ -817,7 +795,7 @@ class Cev():
         return self.analog_channels[channel_index]
 
     # Define Method to Access the Digital Channel by Name
-    def get_status(self, channel_name):
+    def get_status(self, channel_name: str):
         """
         *Extract an digital channel by name*.
 
@@ -833,7 +811,7 @@ class Cev():
 
         Returns
         -------
-        channel:    list of float
+        channel:    list of bool
                     The digital channel values in a zero-based
                     list.
 
@@ -845,6 +823,17 @@ class Cev():
                       specified name.
         get_digital : Collect the digital channel status for a
                       specified name.
+
+        Examples
+        --------
+        >>> from pycev import CEV
+        >>> # Load a file and parse, directly.
+        >>> record = CEV() # Create the parser instance
+        >>> record.load(file="./event-report.cev")
+        >>> record.get_status("TRIPLED")
+        [...]
+        >>> record.get_digital("TRIPLED")
+        [...]
         """
         # Identify the Digital Channel Index
         channel_index = self.status_channel_ids.index(channel_name)
@@ -857,16 +846,6 @@ class Cev():
 
 # Alias the Class: `Cev` to `CEV` for Convenience
 CEV = Cev
-
-# Define Simple Builtin Test
-if __name__ == '__main__':
-    print(row_wise_checksum('"SETTINGS","02E1"'))
-    filepath = input("Specify a CEV file to test against: ")
-    x = Cev(file=filepath)
-    print(x.fid)
-    print(x.trigger_time)
-    print(x.analog_channel_ids)
-    print(x.analog_channels[-1])
 
 
 # END
