@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#08385D">
+  <script src="../../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>pycev.pycev &#8212; pycev</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/pycev_favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=#08385D data-md-color-accent=#C1C1C1>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#_modules/pycev/pycev" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../index.html" title="pycev"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../../_static/pycev_white.png" height="26"
+                   alt="pycev logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">PyCEV</span>
+          <span class="md-header-nav__topic"> pycev.pycev </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/engineerjoe440/pycev/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    pycev
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../"versions.json"",
+        target_loc = "../../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">pycev</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Module code</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../index.html" title="pycev" class="md-nav__button md-logo">
+      
+        <img src="../../_static/pycev_white.png" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../../index.html"
+       title="pycev">PyCEV</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/engineerjoe440/pycev/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    pycev
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../../pycev.html" class="md-nav__link">API Reference</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="../../pycev.html#additional-package-functions" class="md-nav__link">Additional Package Functions</a>
+      
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <h1 id="modules-pycev-pycev--page-root">Source code for pycev.pycev</h1><div class="highlight"><pre>
+<span></span><span class="c1">################################################################################</span>
+<span class="sd">"""</span>
+<span class="sd">pycev: A compressed event record reader for SEL CEV files.</span>
+
+<span class="sd">Author(s):</span>
+<span class="sd">  - Joe Stanley: joe_stanley@selinc.com  engineerjoe440@gmail.com</span>
+
+<span class="sd">Homepage: https://github.com/engineerjoe440/pycev</span>
+
+<span class="sd">SEL Protocol Application Guide:</span>
+<span class="sd">    https://selinc.com/api/download/5026/</span>
+
+<span class="sd">SEL Compressed ASCII (CASCII) Application Guide:</span>
+<span class="sd">    https://selinc.com/api/download/5021/</span>
+
+<span class="sd">───────────────────────────────────────────────────────────────────────────────</span>
+
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) 2020 Joe Stanley</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the "Software"), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+<span class="sd">"""</span>
+<span class="c1">################################################################################</span>
+
+<span class="c1"># Standard Imports</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="c1"># Describe Package for External Interpretation</span>
+<span class="n">_name_</span> <span class="o">=</span> <span class="s2">"pycev"</span>
+<span class="n">_version_</span> <span class="o">=</span> <span class="s2">"0.1.0"</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="n">_version_</span>  <span class="c1"># Alias the Version String</span>
+
+
+<span class="c1"># Define Global Strings</span>
+<span class="n">EVENT_SETTINGS_SEP</span> <span class="o">=</span> <span class="s1">'"SETTINGS","02E1"'</span>
+<span class="n">ANALOG_SAMPLES</span> <span class="o">=</span> <span class="s2">"SAM/CYC_A"</span>
+<span class="n">DIGITAL_SAMPLES</span> <span class="o">=</span> <span class="s2">"SAM/CYC_D"</span>
+<span class="n">TRIGGER_KEY_CHAR</span> <span class="o">=</span> <span class="s2">"&gt;"</span>
+<span class="n">FREQUENCY_KEY</span> <span class="o">=</span> <span class="s2">"FREQ"</span>
+
+
+<span class="c1"># Custom Exceptions and Warnings</span>
+<span class="k">class</span> <span class="nc">MalformedChecksumFailure</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
+    <span class="sd">"""Record data appears to be malformed, and fails checksum validation."""</span>
+
+<span class="k">class</span> <span class="nc">UnexpectedFileExtension</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
+    <span class="sd">"""File does not appear to use expected "CEV" extension."""</span>
+
+<span class="k">class</span> <span class="nc">MalformedHeadingDataMismatch</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">"""CEV is Malformed - Heading and Data Section Lengths do not Match."""</span>
+
+<span class="k">class</span> <span class="nc">MalformedNoFIDFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">"""CEV is Malformed - FID String Could not be Located."""</span>
+
+<span class="k">class</span> <span class="nc">MalformedNoSampleNumberFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">"""CEV is Malformed - Number of Samples Could not be Located."""</span>
+
+
+<span class="c1"># Define Function to Evaluate Checksum</span>
+<span class="k">def</span> <span class="nf">_eval_checksum</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Evaluate the expected checksum for specific data row.</span>
+
+<span class="sd">    This function accepts a string, and calculates the checksum</span>
+<span class="sd">    of the bytes provided.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data:       [str, bytes]</span>
+<span class="sd">                The bytestring which should be evaluated for the</span>
+<span class="sd">                checksum.</span>
+<span class="sd">    constrain:  bool, optional</span>
+<span class="sd">                Control to specify whether the value should be</span>
+<span class="sd">                constrained to an 8-bit representation, defaults</span>
+<span class="sd">                to False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    checksum:   int</span>
+<span class="sd">                The fully evaluated checksum.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Evaluate the sum</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># Cap the Value if Needed</span>
+    <span class="k">if</span> <span class="n">constrain</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">checksum</span> <span class="o">&amp;</span> <span class="mh">0xffff</span>  <span class="c1"># Bit-wise AND with 16-bit maximum</span>
+    <span class="k">return</span> <span class="n">checksum</span>
+
+
+<span class="c1"># Define Function to Cast Hex Byte to "bool-like" List</span>
+<div class="viewcode-block" id="hex_byte_to_bits"><a class="viewcode-back" href="../../pycev.html#pycev.hex_byte_to_bits">[docs]</a><span class="k">def</span> <span class="nf">hex_byte_to_bits</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Interpret a single hex character as bits.</span>
+
+<span class="sd">    This function will accept a hex byte (two characters, 0-F)</span>
+<span class="sd">    and cast it to a list of eight bits. Credit to StackOverflow</span>
+<span class="sd">    user: "Beebs" for concise function implementation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hex_byte:   str</span>
+<span class="sd">                String of two characters representing the byte</span>
+<span class="sd">                in hex.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bits:       list of int</span>
+<span class="sd">                List of eight bits (0/1) representing each bit</span>
+<span class="sd">                position in the input byte.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    hex_bits_from_str   : Determine the bit-structure of multiple</span>
+<span class="sd">                          hex bytes in a string.</span>
+<span class="sd">    """</span>
+    <span class="n">binary_byte</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+    <span class="c1"># Use zfill to pad the string with zeros as we want</span>
+    <span class="c1"># all 8 digits of the byte.</span>
+    <span class="n">bits_string</span> <span class="o">=</span> <span class="n">binary_byte</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">bits_string</span><span class="p">]</span></div>
+
+
+<span class="c1"># Define Function to Evaluate List of Bits from Raw Hex String</span>
+<div class="viewcode-block" id="hex_bits_from_str"><a class="viewcode-back" href="../../pycev.html#pycev.hex_bits_from_str">[docs]</a><span class="k">def</span> <span class="nf">hex_bits_from_str</span><span class="p">(</span><span class="n">hex_string</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Interpret string of hex characters as a list of bits.</span>
+
+<span class="sd">    This function will accept the hex string presented in CEV</span>
+<span class="sd">    files and construct a list of bits where each bit corresponds</span>
+<span class="sd">    directly to one of the relay wordbits.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hex_string: str</span>
+<span class="sd">                String of hex characters to be interpreted.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bits:       list of int</span>
+<span class="sd">                List of bits (int; 0/1) as interpreted from</span>
+<span class="sd">                the hex string input.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    hex_byte_to_bits    : Determine the bit-structure of a single</span>
+<span class="sd">                          hex byte</span>
+<span class="sd">    """</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Iteratively Process the Hex String</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">hex_string</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">hex_byte</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">hex_string</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="c1"># Identify the Bits</span>
+        <span class="n">bits</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">hex_byte_to_bits</span><span class="p">(</span><span class="n">hex_byte</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">bits</span></div>
+
+
+<span class="c1"># Define Function to Interpret Row-Wise Checksum for Validity</span>
+<div class="viewcode-block" id="row_wise_checksum"><a class="viewcode-back" href="../../pycev.html#pycev.row_wise_checksum">[docs]</a><span class="k">def</span> <span class="nf">row_wise_checksum</span><span class="p">(</span><span class="n">row_data</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Identify the data and validate it with included checksum.</span>
+
+<span class="sd">    Events should contain rows of data, where each row appears</span>
+<span class="sd">    as:</span>
+
+<span class="sd">    "some,data,in,the,event","checksum"</span>
+
+<span class="sd">    Knowing this format, this function will separate the data</span>
+<span class="sd">    from the checksum, and use the checksum to evaluate the</span>
+<span class="sd">    validity of the data. The resulting data will be returned</span>
+<span class="sd">    as a namedtuple as: Row('data':str, 'validity':bool)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    row_data:   str</span>
+<span class="sd">                The string containing all row data in form</span>
+<span class="sd">                described above.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    row:        namedtuple</span>
+<span class="sd">                The namedtuple containing the separated data</span>
+<span class="sd">                and validity marker in the form of:</span>
+<span class="sd">                Row('data':str, 'validity':bool)</span>
+<span class="sd">    """</span>
+    <span class="c1"># Define the namedtuple Structure used for Return</span>
+    <span class="n">Row</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">'Row'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'data'</span><span class="p">,</span> <span class="s1">'validity'</span><span class="p">])</span>
+    <span class="c1"># Clean Input Data</span>
+    <span class="n">row_data</span> <span class="o">=</span> <span class="n">row_data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\r</span><span class="s1">'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+    <span class="n">row_data</span> <span class="o">=</span> <span class="n">row_data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+    <span class="c1"># Successfully Extracted Data</span>
+    <span class="n">row_contents</span> <span class="o">=</span> <span class="n">row_data</span><span class="p">[:</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>  <span class="c1"># Remove Checksum Characters</span>
+    <span class="n">checksum_str</span> <span class="o">=</span> <span class="n">row_data</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">:]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>  <span class="c1"># Keep Checksum Only</span>
+    <span class="c1"># Evaluate Checksum as INT</span>
+    <span class="n">checksum_int</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span>
+        <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">checksum_str</span><span class="p">),</span>
+        <span class="n">byteorder</span><span class="o">=</span><span class="s1">'big'</span><span class="p">,</span>
+        <span class="n">signed</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="c1"># Calculate Checksum</span>
+    <span class="n">checksum</span> <span class="o">=</span> <span class="n">_eval_checksum</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">row_contents</span><span class="p">)</span>
+    <span class="c1"># Remove Trailing Comma if Present</span>
+    <span class="k">if</span> <span class="n">row_contents</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">','</span><span class="p">):</span>
+        <span class="n">row_contents</span> <span class="o">=</span> <span class="n">row_contents</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Trim Comma</span>
+    <span class="c1"># Pack Structure</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">checksum</span> <span class="o">==</span> <span class="n">checksum_int</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">Row</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">row_contents</span><span class="p">,</span> <span class="n">validity</span><span class="o">=</span><span class="n">valid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">row</span></div>
+
+
+<span class="c1"># Define Function to Split Event Data from Relay Settings</span>
+<div class="viewcode-block" id="split_event_and_relay_data"><a class="viewcode-back" href="../../pycev.html#pycev.split_event_and_relay_data">[docs]</a><span class="k">def</span> <span class="nf">split_event_and_relay_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Split the Event Data from Relay Settings.</span>
+
+<span class="sd">    This function accepts the full text from a CEV file, and separates</span>
+<span class="sd">    the event-record data from the relay's configuration settings.</span>
+<span class="sd">    These two separated items are returned as a named-tuple which is</span>
+<span class="sd">    formed as: EventData('record':str, 'settings':str)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data:       str</span>
+<span class="sd">                The string containing all data read from the CEV file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    event:      namedtuple</span>
+<span class="sd">                The namedtuple containing the 'record' and 'settings'</span>
+<span class="sd">                information, each being the so-described elements from</span>
+<span class="sd">                the event record which have been read. namedtuple is</span>
+<span class="sd">                of the form: EventData('record':str, 'settings':str)</span>
+<span class="sd">                where 'record' is the event information, and 'settings'</span>
+<span class="sd">                is the relay's configuration settings.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Define the namedtuple Structure used for Return</span>
+    <span class="n">EventData</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">'EventData'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'record'</span><span class="p">,</span> <span class="s1">'settings'</span><span class="p">])</span>
+    <span class="c1"># Gather the Components from the Event Record</span>
+    <span class="n">record</span><span class="p">,</span> <span class="n">settings</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">EVENT_SETTINGS_SEP</span><span class="p">)</span>
+    <span class="c1"># Prepare Structure</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">EventData</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="n">record</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">event</span></div>
+
+
+<span class="c1"># Define the Primary Class</span>
+<div class="viewcode-block" id="Cev"><a class="viewcode-back" href="../../pycev.html#pycev.Cev">[docs]</a><span class="k">class</span> <span class="nc">Cev</span><span class="p">():</span>
+    <span class="sd">"""</span>
+<span class="sd">    SEL CEV File Reader.</span>
+
+<span class="sd">    This class serves to provide functionality to read SEL (Schweitzer</span>
+<span class="sd">    Engineering Laboratories) Compressed EVent records (CEV files) and</span>
+<span class="sd">    grant pragmatic access to the key components of these records. The</span>
+<span class="sd">    methods, attributes, and properties of this class serve to expose</span>
+<span class="sd">    data in a manner that supports scientific analysis and allow common</span>
+<span class="sd">    data-science tools such as NumPy, Matplotlib, Pandas, and others to</span>
+<span class="sd">    conveniently interpret information. This all is in an effort to</span>
+<span class="sd">    support data scientists and engineers to make empowered, intelligent</span>
+<span class="sd">    decisions about the power systems which they are responsible for.</span>
+
+<span class="sd">    Within this module, this class (`Cev`) is also aliased as CEV for</span>
+<span class="sd">    programming convenience, and to allow users to access the functionality</span>
+<span class="sd">    in a format that is consistent with their work.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file:       str, optional</span>
+<span class="sd">                String describing the relative or fully qualified path to</span>
+<span class="sd">                the CEV file that should be read. Optionally used during</span>
+<span class="sd">                class initialization, may also be loaded using the `load`</span>
+<span class="sd">                method.</span>
+<span class="sd">    data:       str, optional</span>
+<span class="sd">                String describing all contents of the CEV file as read.</span>
+<span class="sd">                Optionally used during class initialization to pre-load</span>
+<span class="sd">                the contents of the CEV file.</span>
+<span class="sd">    **kwargs:   dict, optional</span>
+<span class="sd">                Additional optional parameters which may be specified</span>
+<span class="sd">                during class initialization. Common arguments include:</span>
+
+<span class="sd">                    - encoding:     str, file encoding such as 'utf-8'</span>
+<span class="sd">                    - decode_opt:   str, file decoding option such as</span>
+<span class="sd">                                    'strict', 'ignore', 'replace', or</span>
+<span class="sd">                                    'backslashreplace' as defined by</span>
+<span class="sd">                                    standard str.decode method.</span>
+<span class="sd">                    - ignore_warnings: bool, control to ignore warnings</span>
+
+<span class="sd">                Class initialization may include one or more kwargs,</span>
+<span class="sd">                but none are required.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    analog_channels:        list of list of float</span>
+<span class="sd">                            List of lists containing the analog samples</span>
+<span class="sd">                            for each channel.</span>
+<span class="sd">    analog_channel_ids:     list of str</span>
+<span class="sd">                            List of the analog channel names whose index</span>
+<span class="sd">                            values correspond directly to the channel</span>
+<span class="sd">                            datasets in `analog_channels`.</span>
+<span class="sd">    analog_count:           int</span>
+<span class="sd">                            Number of analog channels present in CEV.</span>
+<span class="sd">    channels_count:         int</span>
+<span class="sd">                            Total number of analog and digital (status)</span>
+<span class="sd">                            channels in CEV.</span>
+<span class="sd">    data:                   str</span>
+<span class="sd">                            Full string context of the entire CEV record;</span>
+<span class="sd">                            includes both the event information and relay</span>
+<span class="sd">                            settings that were included with the record.</span>
+<span class="sd">    digital_channels:       list of list of bool</span>
+<span class="sd">                            List of lists containing boolean states for</span>
+<span class="sd">                            each digital (status) channel present in CEV.</span>
+<span class="sd">                            This list presents itself as an alias to the</span>
+<span class="sd">                            `status_channels` class attribute.</span>
+<span class="sd">    digital_channel_ids:    list of str</span>
+<span class="sd">                            List of the digital (status) channel names</span>
+<span class="sd">                            whose index values correspond directly to the</span>
+<span class="sd">                            channel datasets in `digital_channels`. This</span>
+<span class="sd">                            list presents itself as an alias to the</span>
+<span class="sd">                            `status_channel_ids` class attribute.</span>
+<span class="sd">    digital_count:          int</span>
+<span class="sd">                            Number of digital channels present in the CEV.</span>
+<span class="sd">    fid:                    str</span>
+<span class="sd">                            Relay firmware identification string; does not</span>
+<span class="sd">                            include the 'FID=' specifier.</span>
+<span class="sd">    frequency:              float</span>
+<span class="sd">                            The recorded nominal frequency present in the</span>
+<span class="sd">                            CEV.</span>
+<span class="sd">    raw_fid:                str</span>
+<span class="sd">                            "Raw" relay firmware identification string;</span>
+<span class="sd">                            includes the 'FID=' specifier to lead the string.</span>
+<span class="sd">    record:                 str</span>
+<span class="sd">                            Event record data-sub-section contents; contains</span>
+<span class="sd">                            only the event-related data and heading fields of</span>
+<span class="sd">                            the CEV that was loaded.</span>
+<span class="sd">    record_lines:           list of str</span>
+<span class="sd">                            Row-wise split contents of the record with all</span>
+<span class="sd">                            newline and carriage-return characters removed.</span>
+<span class="sd">    settings:               str</span>
+<span class="sd">                            Relay settings data-sub-section contents; contains</span>
+<span class="sd">                            only the relay settings portion of the CEV that</span>
+<span class="sd">                            was loaded.</span>
+<span class="sd">    status_channels:        list of list of bool</span>
+<span class="sd">                            List of lists containing boolean states for</span>
+<span class="sd">                            each status (digital) channel present in CEV.</span>
+<span class="sd">                            This list is aliased to the `digital_channels`</span>
+<span class="sd">                            class attribute.</span>
+<span class="sd">    status_channel_ids:     list of str</span>
+<span class="sd">                            List of the status (digital) channel names</span>
+<span class="sd">                            whose index values correspond directly to the</span>
+<span class="sd">                            channel datasets in `status_channels`. This</span>
+<span class="sd">                            list is aliased to the `digital_channel_ids`</span>
+<span class="sd">                            class attribute.</span>
+<span class="sd">    status_count:           int</span>
+<span class="sd">                            Number of status channels present in the CEV.</span>
+<span class="sd">    trigger_time:           datetime</span>
+<span class="sd">                            Date-time structure indicating when the event</span>
+<span class="sd">                            was "triggered" by protection logic in the relay.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from pycev import CEV</span>
+<span class="sd">    &gt;&gt;&gt; # Load a file and parse, directly.</span>
+<span class="sd">    &gt;&gt;&gt; record = CEV(file="./event-report.cev")</span>
+<span class="sd">    &gt;&gt;&gt; print("Trigger time = {}s".format(record.trigger_time))</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Prepare CEV Reader.</span>
+
+<span class="sd">        Class initialization with optional data input methods for file-path</span>
+<span class="sd">        and raw data as either a string or bytes.</span>
+<span class="sd">        """</span>
+        <span class="c1"># Handle Encoding Type if Provided</span>
+        <span class="k">if</span> <span class="s2">"encoding"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">'encoding'</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Handle Decoding Option if Provided</span>
+        <span class="k">if</span> <span class="s2">"decode_opt"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_decode_opt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">'decode_opt'</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s2">"decode_option"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_decode_opt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">'decode_option'</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_decode_opt</span> <span class="o">=</span> <span class="s1">'strict'</span>
+
+        <span class="c1"># Handle Warnings Override</span>
+        <span class="k">if</span> <span class="s2">"ignore_warnings"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ignore_warnings</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"ignore_warnings"</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ignore_warnings</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Prepare Defaults</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fid</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_fid</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trigger_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Default to Epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analog_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analog_channel_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_channel_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">digital_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_channels</span>  <span class="c1"># Alias the Digitals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">digital_channel_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_channel_ids</span>  <span class="c1"># Alias Digitals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analog_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">digital_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="mi">1970</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">day</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hour</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sec</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msec</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trig_column</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trig_row</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_analog_samp_timedelta</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_digital_samp_timedelta</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Empty Dictionary of the Keys</span>
+
+        <span class="c1"># Prepare Data or File if Provided</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">):</span> <span class="c1"># Probably a file-like object?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+    <span class="c1"># Define Simple Method to Identify Class Keys</span>
+    <span class="k">def</span> <span class="nf">_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Capture Class Attributes as Keys."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="c1"># Define Simple File Extension Validator</span>
+    <span class="k">def</span> <span class="nf">_validate_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="sd">"""Validate Extension is of *.CEV Format."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+                <span class="s2">"Argument `file` must be a valid file-path to a CEV file."</span>
+            <span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'CEV'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ext</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+            <span class="c1"># Throw Warning to User</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_warnings</span><span class="p">:</span>
+                <span class="c1"># Capture Pertinent Information</span>
+                <span class="n">parent</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">callfile</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">filename</span>
+                <span class="n">lineno</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">lineno</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span>
+                    <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+                        <span class="s1">'File does not appear to use "CEV" extension,'</span> <span class="o">+</span>
+                        <span class="sa">f</span><span class="s1">' instead is "</span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s1">".'</span>
+                    <span class="p">),</span>
+                    <span class="n">category</span><span class="o">=</span><span class="n">UnexpectedFileExtension</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="n">callfile</span><span class="p">,</span>
+                    <span class="n">lineno</span><span class="o">=</span><span class="n">lineno</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="c1"># Proceed Without Exception</span>
+
+    <span class="c1"># Define Simple Decoder for Data</span>
+    <span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="sd">"""Simply Decode the Data Using the Specified Encoding Format."""</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decode_opt</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span>
+
+    <span class="c1"># Define Function to Prepare Record and Validate Checksums</span>
+    <span class="k">def</span> <span class="nf">_prepare_and_validate_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Simply Split the Record and Settings, then Evaluate Checksums."""</span>
+        <span class="c1"># Split Data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">split_event_and_relay_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">invalid_lines</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Evaluate Record Checksums</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s1">''</span> <span class="ow">or</span> <span class="p">(</span><span class="n">line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># Collect Line Data and</span>
+            <span class="n">content</span><span class="p">,</span> <span class="n">validity</span> <span class="o">=</span> <span class="n">row_wise_checksum</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">validity</span><span class="p">:</span>
+                <span class="n">invalid_lines</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">content</span>
+        <span class="c1"># Throw Warning to User</span>
+        <span class="k">if</span> <span class="n">invalid_lines</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_warnings</span><span class="p">):</span>
+            <span class="c1"># Capture Pertinent Information</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">callfile</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">filename</span>
+            <span class="n">lineno</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">lineno</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">=</span><span class="p">(</span>
+                    <span class="s1">'Record data appears to be malformed, '</span>
+                    <span class="s1">'and fails checksum validation for lines: '</span>
+                    <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">invalid_lines</span><span class="p">])</span>
+                <span class="p">),</span>
+                <span class="n">category</span><span class="o">=</span><span class="n">MalformedChecksumFailure</span><span class="p">,</span>
+                <span class="n">filename</span><span class="o">=</span><span class="n">callfile</span><span class="p">,</span>
+                <span class="n">lineno</span><span class="o">=</span><span class="n">lineno</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="c1"># Return the Validity Signal</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="c1"># Define Internal Test to Identify Header</span>
+    <span class="k">def</span> <span class="nf">_is_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_data</span><span class="p">):</span>
+        <span class="sd">"""Test Function to Evaluate Whether Row is Header."""</span>
+        <span class="k">if</span> <span class="n">row_data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row_data</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'"'</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Define Internal Test to Identify Data Row</span>
+    <span class="k">def</span> <span class="nf">_is_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_data</span><span class="p">):</span>
+        <span class="sd">"""Test Function to Evaluate Whether Row isn't Header."""</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_header</span><span class="p">(</span><span class="n">row_data</span><span class="o">=</span><span class="n">row_data</span><span class="p">)</span>
+
+    <span class="c1"># Define Primary Parsing Function</span>
+    <span class="k">def</span> <span class="nf">_parse_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Primary Parsing Function to Interpret the CEV."""</span>
+        <span class="c1"># Operate on "Row-Pairs" with two Rows at Once to Pair Key with Value</span>
+        <span class="c1"># Start with Row-Index-Zero (first row), and Assuming Header</span>
+        <span class="n">iRow</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Only Validate the First Row, Since Second Row Should Contain FID</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_header</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span><span class="p">])</span>
+
+        <span class="c1"># Manage the Initial Record Data</span>
+        <span class="k">while</span> <span class="n">header</span><span class="p">:</span>
+            <span class="c1"># Clean and Split the Heading and Content</span>
+            <span class="n">heading_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+            <span class="n">content_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">content_row</span> <span class="o">=</span> <span class="n">content_row</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">heading_row</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">content_row</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">heading_row</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">content_row</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">MalformedHeadingDataMismatch</span><span class="p">(</span>
+                    <span class="s2">"CEV may be malformed, heading and data length don't match"</span>
+                <span class="p">)</span>
+            <span class="c1"># Load the Data into Class Keys</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">heading_row</span><span class="p">,</span> <span class="n">content_row</span><span class="p">):</span>
+                <span class="c1"># Verify Attribute and Load</span>
+                <span class="n">key_lower</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">key_lower</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key_lower</span><span class="p">]):</span>
+                        <span class="k">continue</span>  <span class="c1"># Don't Overwrite a Callable!</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'('</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="c1"># Valid Class Variable Name, Load Directly</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key_lower</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="c1"># Store the Data as a Property</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+            <span class="c1"># Check Next Group</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_header</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span> <span class="o">+</span> <span class="mi">3</span><span class="p">])</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_header</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span> <span class="o">+</span> <span class="mi">4</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="c1"># Increment Row Index</span>
+            <span class="n">iRow</span> <span class="o">+=</span> <span class="mi">2</span>
+
+        <span class="c1"># Following the Primary Header Content, a Single Header Remains</span>
+        <span class="c1"># with the Analog and Digital Channel Names.</span>
+        <span class="c1"># Split on either a comma (',') or a space (' ')</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">',| '</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span><span class="p">])</span>
+        <span class="n">is_analog</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># First Channel from Left is Analog</span>
+
+        <span class="c1"># Identify Channel Names as Analog or Digital</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">channel</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">channels</span><span class="p">):</span>
+            <span class="c1"># Check if Trig Channel</span>
+            <span class="k">if</span> <span class="s1">'"TRIG"'</span> <span class="o">==</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="n">is_analog</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_trig_column</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">continue</span>  <span class="c1"># Don't Track the TRIP Channel</span>
+            <span class="k">elif</span> <span class="s1">'*'</span> <span class="o">==</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">continue</span>  <span class="c1"># Don't Track Unused Channels</span>
+            <span class="k">elif</span> <span class="s1">''</span> <span class="o">==</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="k">continue</span>  <span class="c1"># Don't Track Empty Channel Names</span>
+            <span class="c1"># Remove Double Quotes</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+            <span class="c1"># Channel Must be Valid, Append Name to Either Analog or Digital</span>
+            <span class="k">if</span> <span class="n">is_analog</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">analog_channel_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">status_channel_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+        <span class="n">iRow</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Increment Past the Data Heading Column</span>
+
+        <span class="c1"># Characterize Number of Channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analog_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analog_channel_ids</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status_channel_ids</span><span class="p">)</span>
+
+        <span class="c1"># Build the Channel Lists According to Sizes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analog_channels</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analog_count</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_channels</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status_count</span><span class="p">)]</span>
+
+        <span class="c1"># Iterate over Data Rows to Load Channels</span>
+        <span class="n">numRows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">)</span>
+        <span class="n">initRow</span> <span class="o">=</span> <span class="n">iRow</span>
+        <span class="k">while</span> <span class="n">iRow</span> <span class="o">&lt;</span> <span class="n">numRows</span><span class="p">:</span>
+            <span class="n">channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_lines</span><span class="p">[</span><span class="n">iRow</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
+            <span class="c1"># Track Analog Quantities</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">analog_count</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">channels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="c1"># Verify that Channel Index Shouldn't be Ignored</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_channels</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">analog_channels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span>
+
+            <span class="c1"># Identify Trigger Data Row</span>
+            <span class="k">if</span> <span class="n">TRIGGER_KEY_CHAR</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_trig_row</span> <span class="o">=</span> <span class="n">iRow</span> <span class="o">-</span> <span class="n">initRow</span>
+
+            <span class="c1"># Format the Digitals</span>
+            <span class="n">digital_string</span> <span class="o">=</span> <span class="n">channels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+            <span class="n">digitals</span> <span class="o">=</span> <span class="n">hex_bits_from_str</span><span class="p">(</span><span class="n">digital_string</span><span class="p">)</span>
+
+            <span class="c1"># Track Digital Quantities</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_count</span><span class="p">):</span>
+                <span class="c1"># Verify that Channel Index (Offset by the TRIG channel)</span>
+                <span class="c1"># Shouldn't be Ignored</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trig_column</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignored_channels</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">status_channels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">digitals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="n">iRow</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Increment Row Index</span>
+
+    <span class="c1"># Define Event Trigger Time Evaluator</span>
+    <span class="k">def</span> <span class="nf">_eval_trigger_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Use Time Information to Identify Trigger Time."""</span>
+        <span class="n">usec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msec</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trigger_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
+            <span class="n">year</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">),</span>
+            <span class="n">month</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">month</span><span class="p">),</span>
+            <span class="n">day</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">day</span><span class="p">),</span>
+            <span class="n">hour</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hour</span><span class="p">),</span>
+            <span class="n">minute</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">),</span>
+            <span class="n">second</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sec</span><span class="p">),</span>
+            <span class="n">microsecond</span><span class="o">=</span><span class="n">usec</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Define Frequency Identifier</span>
+    <span class="k">def</span> <span class="nf">_eval_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Identify and load the system nominal frequency."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FREQUENCY_KEY</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">))</span>
+
+    <span class="c1"># Define FID Cleaner</span>
+    <span class="k">def</span> <span class="nf">_clean_fid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Store the 'raw' FID in a New Variable, and Clean Existing FID."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_fid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fid</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fid</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'='</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">MalformedNoFIDFound</span><span class="p">(</span>
+                <span class="s2">"Failed to load relay FID from CEV"</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+
+    <span class="c1"># Define Samples-Per-Cycle Evaluator</span>
+    <span class="k">def</span> <span class="nf">_eval_samples_per_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Identify the Samples/Cycle Indicators, Calculate the Deltas."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Extract the Number of Samples per Cycle, Evaluate Milliseconds</span>
+            <span class="n">ms_per_cyc</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span>
+            <span class="n">analog_ms</span> <span class="o">=</span> <span class="n">ms_per_cyc</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">ANALOG_SAMPLES</span><span class="p">])</span>
+            <span class="n">digital_ms</span> <span class="o">=</span> <span class="n">ms_per_cyc</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">DIGITAL_SAMPLES</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">MalformedNoSampleNumberFound</span><span class="p">(</span>
+                <span class="s2">"Failed to identify number of samples per cycle"</span>
+            <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+        <span class="c1"># Prepare the TimeDeltas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_analog_samp_timedelta</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">milliseconds</span><span class="o">=</span><span class="n">analog_ms</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_digital_samp_timedelta</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">milliseconds</span><span class="o">=</span><span class="n">digital_ms</span><span class="p">)</span>
+
+    <span class="c1"># Define Timestamp Loader</span>
+    <span class="k">def</span> <span class="nf">_eval_timestamps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""Evaluate event timestamps."""</span>
+        <span class="c1"># Calculate the first timestamp</span>
+        <span class="n">initTimeDelta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analog_samp_timedelta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trig_row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">trigger_time</span> <span class="o">-</span> <span class="n">initTimeDelta</span><span class="p">]</span>
+        <span class="c1"># Iteratively Calculate Remaining Timestamps</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analog_channels</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="c1"># Add Timedelta to Most Recent Time Value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analog_samp_timedelta</span><span class="p">)</span>
+
+    <span class="c1"># Define File Loader Method</span>
+<div class="viewcode-block" id="Cev.load"><a class="viewcode-back" href="../../pycev.html#pycev.Cev.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        *CEV File Loader Method*.</span>
+
+<span class="sd">        Use this method to load a CEV file, and parse its contents into the</span>
+<span class="sd">        valuable class attributes and structure.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file:       str</span>
+<span class="sd">                    String describing the relative or fully qualified path to</span>
+<span class="sd">                    the CEV file that should be read. Optionally used during</span>
+<span class="sd">                    class initialization, may also be loaded using the `load`</span>
+<span class="sd">                    method.</span>
+<span class="sd">        encoding:   str, optional</span>
+<span class="sd">                    String specifying the encoding format (if required) in</span>
+<span class="sd">                    which the file is stored. This may be used for files of</span>
+<span class="sd">                    format 'utf-8', for example.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        load_data       : Load data which has already been read from a file,</span>
+<span class="sd">                          or is presented as a stream.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError</span>
+<span class="sd">            If the file cannot be located on the system</span>
+<span class="sd">        MalformedHeadingDataMismatch</span>
+<span class="sd">            If the file contains a header and content row pair which do not</span>
+<span class="sd">            share an equal number of columns.</span>
+
+<span class="sd">        Warns</span>
+<span class="sd">        -----</span>
+<span class="sd">        UnexpectedFileExtension</span>
+<span class="sd">            If the uppercase-cast file extension is not ".CEV"</span>
+<span class="sd">        MalformedChecksumFailure</span>
+<span class="sd">            If any of the CEV line-wise checksums do not evaluate successfully</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from pycev import CEV</span>
+<span class="sd">        &gt;&gt;&gt; # Load a file and parse, directly.</span>
+<span class="sd">        &gt;&gt;&gt; record = CEV() # Create the parser instance</span>
+<span class="sd">        &gt;&gt;&gt; record.load(file="./event-report.cev")</span>
+<span class="sd">        &gt;&gt;&gt; print("Trigger time = {}s".format(record.trigger_time))</span>
+<span class="sd">        """</span>
+        <span class="c1"># Switch between Handling File-Path, or File-Like-Object</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="c1"># Validate file Extension</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_validate_extension</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="c1"># Read File with Encoding</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">file_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># Gather ALL Data From File</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">"read"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="c1"># Process the Data and Load Record</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+
+    <span class="c1"># Define Data Loader Method</span>
+<div class="viewcode-block" id="Cev.load_data"><a class="viewcode-back" href="../../pycev.html#pycev.Cev.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        *CEV Data Loader Method*.</span>
+
+<span class="sd">        Use this method to load the data from a CEV file which has already been</span>
+<span class="sd">        read, or data which is being streamed to the class (i.e., an active</span>
+<span class="sd">        connection to a relay). This method will parse the data and load the</span>
+<span class="sd">        class attributes and structures appropriately.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data:       [str, bytes]</span>
+<span class="sd">                    String of the full file content.</span>
+<span class="sd">        encoding:   str, optional</span>
+<span class="sd">                    String specifying the encoding format (if required) in</span>
+<span class="sd">                    which the file is stored. This may be used for files of</span>
+<span class="sd">                    format 'utf-8', for example.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        load            : Load data from a CEV file.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        MalformedHeadingDataMismatch</span>
+<span class="sd">            If the file contains a header and content row pair which do not</span>
+<span class="sd">            share an equal number of columns.</span>
+
+<span class="sd">        Warns</span>
+<span class="sd">        -----</span>
+<span class="sd">        MalformedChecksumFailure</span>
+<span class="sd">            If any of the CEV line-wise checksums do not evaluate successfully</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from pycev import CEV</span>
+<span class="sd">        &gt;&gt;&gt; # Load a file and parse, directly.</span>
+<span class="sd">        &gt;&gt;&gt; record = CEV() # Create the parser instance</span>
+<span class="sd">        &gt;&gt;&gt; with open("./event-report.cev", 'r') as file:</span>
+<span class="sd">        ...     data = file.read()</span>
+<span class="sd">        &gt;&gt;&gt; record.load_data(data=data)</span>
+<span class="sd">        &gt;&gt;&gt; print("Trigger time = {}s".format(record.trigger_time))</span>
+<span class="sd">        """</span>
+        <span class="c1"># Method is Called Internally with `data=None`</span>
+        <span class="c1"># Don't Try Loading in this Case</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Decode Data As Needed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decode</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="c1"># Prepare Record Information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_and_validate_record</span><span class="p">()</span>
+        <span class="c1"># Parse the Record</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_record</span><span class="p">()</span>
+        <span class="c1"># Determine the Trigger Time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_trigger_time</span><span class="p">()</span>
+        <span class="c1"># Identify Nominal System Frequency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_frequency</span><span class="p">()</span>
+        <span class="c1"># Clean FID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clean_fid</span><span class="p">()</span>
+        <span class="c1"># Rationalize Number of Samples per Cycle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_samples_per_cycle</span><span class="p">()</span>
+        <span class="c1"># Evaluate the Timestamps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_timestamps</span><span class="p">()</span></div>
+
+    <span class="c1"># Define Method to Access the Analog Channel by Name</span>
+<div class="viewcode-block" id="Cev.get_analog"><a class="viewcode-back" href="../../pycev.html#pycev.Cev.get_analog">[docs]</a>    <span class="k">def</span> <span class="nf">get_analog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        *Extract an analog channel by name*.</span>
+
+<span class="sd">        Use this method to return the list of analog values</span>
+<span class="sd">        associated with the particular analog channel with</span>
+<span class="sd">        the specified name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channel_name:   str</span>
+<span class="sd">                        Name of the analog channel which</span>
+<span class="sd">                        should be extracted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        channel:    list of float</span>
+<span class="sd">                    The analog channel values in a zero-based</span>
+<span class="sd">                    list.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_status  : Collect the digital channel status for a</span>
+<span class="sd">                      specified name.</span>
+<span class="sd">        get_digital : Collect the digital channel status for a</span>
+<span class="sd">                      specified name.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from pycev import CEV</span>
+<span class="sd">        &gt;&gt;&gt; # Load a file and parse, directly.</span>
+<span class="sd">        &gt;&gt;&gt; record = CEV() # Create the parser instance</span>
+<span class="sd">        &gt;&gt;&gt; record.load(file="./event-report.cev")</span>
+<span class="sd">        &gt;&gt;&gt; record.get_analog("FREQ")</span>
+<span class="sd">        [...]</span>
+<span class="sd">        """</span>
+        <span class="c1"># Identify the Analog Channel Index</span>
+        <span class="n">channel_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analog_channel_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">channel_name</span><span class="p">)</span>
+        <span class="c1"># Return the Analog Channel</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">analog_channels</span><span class="p">[</span><span class="n">channel_index</span><span class="p">]</span></div>
+
+    <span class="c1"># Define Method to Access the Digital Channel by Name</span>
+<div class="viewcode-block" id="Cev.get_status"><a class="viewcode-back" href="../../pycev.html#pycev.Cev.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        *Extract an digital channel by name*.</span>
+
+<span class="sd">        Use this method to return the list of digital values</span>
+<span class="sd">        associated with the particular digital channel with</span>
+<span class="sd">        the specified name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channel_name:   str</span>
+<span class="sd">                        Name of the digital channel which</span>
+<span class="sd">                        should be extracted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        channel:    list of bool</span>
+<span class="sd">                    The digital channel values in a zero-based</span>
+<span class="sd">                    list.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        get_analog  : Collect the analog channel status for a</span>
+<span class="sd">                      specified name.</span>
+<span class="sd">        get_status  : Collect the digital channel status for a</span>
+<span class="sd">                      specified name.</span>
+<span class="sd">        get_digital : Collect the digital channel status for a</span>
+<span class="sd">                      specified name.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from pycev import CEV</span>
+<span class="sd">        &gt;&gt;&gt; # Load a file and parse, directly.</span>
+<span class="sd">        &gt;&gt;&gt; record = CEV() # Create the parser instance</span>
+<span class="sd">        &gt;&gt;&gt; record.load(file="./event-report.cev")</span>
+<span class="sd">        &gt;&gt;&gt; record.get_status("TRIPLED")</span>
+<span class="sd">        [...]</span>
+<span class="sd">        &gt;&gt;&gt; record.get_digital("TRIPLED")</span>
+<span class="sd">        [...]</span>
+<span class="sd">        """</span>
+        <span class="c1"># Identify the Digital Channel Index</span>
+        <span class="n">channel_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_channel_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">channel_name</span><span class="p">)</span>
+        <span class="c1"># Return the Digital Channel</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_channels</span><span class="p">[</span><span class="n">channel_index</span><span class="p">]</span></div>
+
+    <span class="c1"># Alias `get_status` to `get_digital`</span>
+    <span class="n">get_digital</span> <span class="o">=</span> <span class="n">get_status</span></div>
+
+
+<span class="c1"># Alias the Class: `Cev` to `CEV` for Convenience</span>
+<span class="n">CEV</span> <span class="o">=</span> <span class="n">Cev</span>
+
+
+<span class="c1"># END</span>
+</pre></div>
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2022, Joe Stanley.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
