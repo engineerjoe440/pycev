@@ -1,0 +1,27 @@
+/*******************************************************************************
+ * Stanley Solutions Jenkinsfile for PyCEV
+ *
+ * Test Execution Script for PyCEV using StanleySolutions Jenkins Systems.
+ ******************************************************************************/
+
+node('x86-64-build') {
+    stage('Test in Virtual Env') {
+
+        // Checkout Source
+        checkout scm
+
+        // With 
+        withCredentials([
+            string(credentialsId: 'pycev-files-secret',
+            variable: 'CLONE_ACCESS_URL')
+        ]) {
+
+            // Checkout CEV Resources
+            sh "git clone ${CLONE_ACCESS_URL}"
+
+        }
+
+        // Run Test Script
+        sh "/usr/bin/bash ${WORKSPACE}/ci/test.sh"
+    }
+}
