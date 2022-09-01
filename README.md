@@ -7,7 +7,8 @@
 [![License](https://img.shields.io/pypi/l/pycev.svg?color=blue)](https://github.com/engineerjoe440/pycev/blob/master/LICENSE.txt)
 
 
-[![Build Status](http://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-CI)](http://jenkins.stanleysolutionsnw.com/job/PyCEV-CI/)
+[![Functional Tests](http://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-CI)](http://jenkins.stanleysolutionsnw.com/job/PyCEV-CI/)
+[![pytest-unit-tests](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml)
 [![pydocstyle](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml)
 [![pylint](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml)
 
