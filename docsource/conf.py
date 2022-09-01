@@ -109,7 +109,7 @@ html_theme_options = {
 
     # Set the color and the accent color
     'theme_color': '#08385D',
-    'color_primary': 'indigo',
+    'color_primary': 'light-blue',
     'color_accent': 'blue',
 
     # Set the repo location to get a badge with stats

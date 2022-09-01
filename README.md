@@ -38,7 +38,7 @@ record = CEV(file="./event-report.cev")
 print("Trigger time = {}s".format(record.trigger_time))
 ```
 
-# :warning: Caution:
+<a title="Fabián Alexis, CC BY-SA 3.0 &lt;https://creativecommons.org/licenses/by-sa/3.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Antu_dialog-warning.svg"><img width="25px" alt="Antu dialog-warning" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Antu_dialog-warning.svg/512px-Antu_dialog-warning.svg.png"></a> **Caution**
 ***This project, although providing support for CEV files created by SEL, is not
 sponsored, tested, or vetted in any way by Schweitzer Engineering Laboratories (SEL).
 This project is authored and maintained as an open-source project. Testing is performed
