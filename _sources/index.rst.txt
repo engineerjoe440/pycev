@@ -12,6 +12,9 @@ Core Documentation
    :maxdepth: 1
    
    pycev
+   changelog
+   Github <https://github.com/engineerjoe440/pycev>
+   PyPI <https://pypi.org/project/pycev>
 
 
 .. include:: ../README.md
