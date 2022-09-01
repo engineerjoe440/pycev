@@ -101,7 +101,7 @@ Not all tests can be run, locally, since the functional tests require additional
 resources provided by a Jenkins runner managed by Joe Stanley.
 
 ### Contact Info
-:information_source: *As mentioned in the
+<a title="El T, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Information_icon.svg"><img width="512" alt="Information icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Information_icon.svg/512px-Information_icon.svg.png"></a> *As mentioned in the
 [caution](https://github.com/engineerjoe440/pycev#warning-caution) above, this
 project is not associated with Schweitzer Engineering Laboratories (SEL) in any
 way, and as such, all contacts for questions, support, or other items should be
