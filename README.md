@@ -7,9 +7,15 @@
 [![License](https://img.shields.io/pypi/l/pycev.svg?color=blue)](https://github.com/engineerjoe440/pycev/blob/master/LICENSE.txt)
 
 
-[![Build Status](http://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-CI)](http://jenkins.stanleysolutionsnw.com/job/PyCEV-CI/)
+[![pytest-unit-tests](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml)
 [![pydocstyle](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml)
 [![pylint](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml)
+
+##### Test Status
+| **Branch** | **Status** |
+|------------|------------|
+| main       | [![Build Status](https://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-Functional-Test%2Fmain)](https://jenkins.stanleysolutionsnw.com/job/PyCEV-Functional-Test/job/main/) |
+| develop    | [![Build Status](https://jenkins.stanleysolutionsnw.com/buildStatus/icon?job=PyCEV-Functional-Test%2Fdevelop)](https://jenkins.stanleysolutionsnw.com/job/PyCEV-Functional-Test/job/develop/) |
 
 ***NOTE:*** This project is in VERY early stages of development and is nowhere near completion.
 

@@ -47,7 +47,7 @@ from collections import namedtuple
 
 # Describe Package for External Interpretation
 _name_ = "pycev"
-_version_ = "0.0"
+_version_ = "0.1.0"
 __version__ = _version_  # Alias the Version String
 
 
