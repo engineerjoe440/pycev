@@ -17,9 +17,7 @@ import pycev
 cev_dir = os.path.join(os.getcwd(), 'pycev-test-ci', 'cev-files')
 cev_file_list = [f for f in os.listdir(cev_dir) if os.path.isfile(f)]
 
-# Test Each Available CEV file. The expectation is that many will fail due to
-# invalid formatting (which we'll work on later)
-@pytest.mark.xfail()
+# Test Each Available CEV file.
 @pytest.mark.parametrize('cev_file', cev_file_list, ids=cev_file_list)
 def test_load_every_cev_file(cev_file):
     """Load Every File."""
