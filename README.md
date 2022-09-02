@@ -10,6 +10,7 @@
 [![pytest-unit-tests](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pytest-unit-tests.yml)
 [![pydocstyle](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pydocstyle.yml)
 [![pylint](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml/badge.svg)](https://github.com/engineerjoe440/pycev/actions/workflows/pylint.yml)
+[![Documentation Status](https://readthedocs.org/projects/pycev/badge/?version=develop)](https://pycev.readthedocs.io/en/develop/?badge=develop)
 
 ##### Functional Test Status
 | **Branch** | **Status** |
