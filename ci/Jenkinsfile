@@ -16,8 +16,19 @@ node('x86-64-build') {
             variable: 'CLONE_ACCESS_URL')
         ]) {
 
-            // Checkout CEV Resources
-            sh "git clone ${CLONE_ACCESS_URL}"
+            try {
+
+                // Checkout CEV Resources
+                sh "git clone ${CLONE_ACCESS_URL}"
+
+            } catch (Exception _) {
+
+                dir ('pycev-test-ci') {
+                    // Pull CEV Resources
+                    sh "git pull"
+                }
+
+            }
 
         }
 
