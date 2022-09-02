@@ -25,4 +25,4 @@ jobs:
         python3 -c "import pycev; print('pycev.__file__')"
     - name: Test NumpyDoc Style
       run: |
-        pydocstyle --convention=numpy
+        pydocstyle --convention=numpy ./pycev.py
