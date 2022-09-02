@@ -7,13 +7,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 # Gather Version Information from Python File
-with open("pycev/pycev.py", encoding="utf-8") as fh:
+with open("pycev.py", encoding="utf-8") as fh:
     file_str = fh.read()
-    name = re.search('_name_ = \"(.*)\"', file_str).group(1)
-    ver = re.search('_version_ = \"(.*)\"', file_str).group(1)
+    name = re.search('_name_ = "(.*)"', file_str).group(1)
+    ver = re.search('_version_ = "(.*)"', file_str).group(1)
     # Version Breakdown:
     # MAJOR CHANGE . MINOR CHANGE . MICRO CHANGE
-    print("Setup for:",name,"   Version:",ver)
+    print("Setup for:", name, "   Version:", ver)
 
 # Generate Setup Tools Argument
 setuptools.setup(
@@ -25,7 +25,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/engineerjoe440/pycev",
-    packages=['pycev'],
+    packages=["pycev"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -35,5 +35,5 @@ setuptools.setup(
         "Source Repository": "https://github.com/engineerjoe440/pycev",
         "Bug Tracker": "https://github.com/engineerjoe440/pycev/issues",
         "Documentation": "https://engineerjoe440.github.io/pycev/",
-        }
+    },
 )
