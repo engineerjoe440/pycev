@@ -15,5 +15,10 @@ python3 -m pip install .
 # Run Tests
 python3 -m pytest --xdoctest
 
+# Result
+result=$?
+
 # Deactivate Environment
 deactivate
+
+exit $result
