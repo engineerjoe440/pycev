@@ -350,24 +350,24 @@
 
 <span class="c1"># Custom Exceptions and Warnings</span>
 <span class="k">class</span> <span class="nc">MalformedChecksumFailure</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
-    <span class="sd">"""Record data appears to be malformed, and fails checksum validation."""</span>
+<span class="w">    </span><span class="sd">"""Record data appears to be malformed, and fails checksum validation."""</span>
 
 <span class="k">class</span> <span class="nc">UnexpectedFileExtension</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
-    <span class="sd">"""File does not appear to use expected "CEV" extension."""</span>
+<span class="w">    </span><span class="sd">"""File does not appear to use expected "CEV" extension."""</span>
 
 <span class="k">class</span> <span class="nc">MalformedHeadingDataMismatch</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">"""CEV is Malformed - Heading and Data Section Lengths do not Match."""</span>
+<span class="w">    </span><span class="sd">"""CEV is Malformed - Heading and Data Section Lengths do not Match."""</span>
 
 <span class="k">class</span> <span class="nc">MalformedNoFIDFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">"""CEV is Malformed - FID String Could not be Located."""</span>
+<span class="w">    </span><span class="sd">"""CEV is Malformed - FID String Could not be Located."""</span>
 
 <span class="k">class</span> <span class="nc">MalformedNoSampleNumberFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">"""CEV is Malformed - Number of Samples Could not be Located."""</span>
+<span class="w">    </span><span class="sd">"""CEV is Malformed - Number of Samples Could not be Located."""</span>
 
 
 <span class="c1"># Define Function to Interpret Row-Wise Checksum for Validity</span>
 <div class="viewcode-block" id="row_wise_checksum"><a class="viewcode-back" href="../pycev.html#pycev.row_wise_checksum">[docs]</a><span class="k">def</span> <span class="nf">row_wise_checksum</span><span class="p">(</span><span class="n">row_data</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">"""</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Identify the data and validate it with included checksum.</span>
 
 <span class="sd">    Events should contain rows of data, where each row appears</span>
@@ -426,7 +426,7 @@
 
 <span class="c1"># Define Function to Split Event Data from Relay Settings</span>
 <div class="viewcode-block" id="split_event_and_relay_data"><a class="viewcode-back" href="../pycev.html#pycev.split_event_and_relay_data">[docs]</a><span class="k">def</span> <span class="nf">split_event_and_relay_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="sd">"""</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Split the Event Data from Relay Settings.</span>
 
 <span class="sd">    This function accepts the full text from a CEV file, and separates</span>
@@ -460,7 +460,7 @@
 
 <span class="c1"># Define the Primary Class</span>
 <div class="viewcode-block" id="Cev"><a class="viewcode-back" href="../pycev.html#pycev.Cev">[docs]</a><span class="k">class</span> <span class="nc">Cev</span><span class="p">():</span>
-    <span class="sd">"""</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    SEL CEV File Reader.</span>
 
 <span class="sd">    This class serves to provide functionality to read SEL (Schweitzer</span>
@@ -580,7 +580,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">"""</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Prepare CEV Reader.</span>
 
 <span class="sd">        Class initialization with optional data input methods for file-path</span>
@@ -652,12 +652,12 @@
 
     <span class="c1"># Define Simple Method to Identify Class Keys</span>
     <span class="k">def</span> <span class="nf">_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Capture Class Attributes as Keys."""</span>
+<span class="w">        </span><span class="sd">"""Capture Class Attributes as Keys."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
     <span class="c1"># Define Simple File Extension Validator</span>
     <span class="k">def</span> <span class="nf">_validate_extension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
-        <span class="sd">"""Validate Extension is of *.CEV Format."""</span>
+<span class="w">        </span><span class="sd">"""Validate Extension is of *.CEV Format."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
                 <span class="s2">"Argument `file` must be a valid file-path to a CEV file."</span>
@@ -683,7 +683,7 @@
 
     <span class="c1"># Define Simple Decoder for Data</span>
     <span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
-        <span class="sd">"""Simply Decode the Data Using the Specified Encoding Format."""</span>
+<span class="w">        </span><span class="sd">"""Simply Decode the Data Using the Specified Encoding Format."""</span>
         <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decode_opt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -691,7 +691,7 @@
 
     <span class="c1"># Define Function to Prepare Record and Validate Checksums</span>
     <span class="k">def</span> <span class="nf">_prepare_and_validate_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Simply Split the Record and Settings, then Evaluate Checksums."""</span>
+<span class="w">        </span><span class="sd">"""Simply Split the Record and Settings, then Evaluate Checksums."""</span>
         <span class="c1"># Split Data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">split_event_and_relay_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="n">invalid_lines</span> <span class="o">=</span> <span class="p">{}</span>
@@ -725,7 +725,7 @@
 
     <span class="c1"># Define Internal Test to Identify Header</span>
     <span class="k">def</span> <span class="nf">_is_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_data</span><span class="p">):</span>
-        <span class="sd">"""Test Function to Evaluate Whether Row is Header."""</span>
+<span class="w">        </span><span class="sd">"""Test Function to Evaluate Whether Row is Header."""</span>
         <span class="k">if</span> <span class="n">row_data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row_data</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'"'</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
@@ -733,12 +733,12 @@
 
     <span class="c1"># Define Internal Test to Identify Data Row</span>
     <span class="k">def</span> <span class="nf">_is_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_data</span><span class="p">):</span>
-        <span class="sd">"""Test Function to Evaluate Whether Row isn't Header."""</span>
+<span class="w">        </span><span class="sd">"""Test Function to Evaluate Whether Row isn't Header."""</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_header</span><span class="p">(</span><span class="n">row_data</span><span class="o">=</span><span class="n">row_data</span><span class="p">)</span>
 
     <span class="c1"># Define Primary Parsing Function</span>
     <span class="k">def</span> <span class="nf">_parse_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Primary Parsing Function to Interpret the CEV."""</span>
+<span class="w">        </span><span class="sd">"""Primary Parsing Function to Interpret the CEV."""</span>
         <span class="c1"># Operate on "Row-Pairs" with two Rows at Once to Pair Key with Value</span>
         <span class="c1"># Start with Row-Index-Zero (first row), and Assuming Header</span>
         <span class="n">iRow</span> <span class="o">=</span> <span class="mi">0</span>
@@ -859,7 +859,7 @@
 
     <span class="c1"># Define Event Trigger Time Evaluator</span>
     <span class="k">def</span> <span class="nf">_eval_trigger_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Use Time Information to Identify Trigger Time."""</span>
+<span class="w">        </span><span class="sd">"""Use Time Information to Identify Trigger Time."""</span>
         <span class="n">usec</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msec</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trigger_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span>
             <span class="n">year</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">),</span>
@@ -873,12 +873,12 @@
 
     <span class="c1"># Define Frequency Identifier</span>
     <span class="k">def</span> <span class="nf">_eval_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Identify and load the system nominal frequency."""</span>
+<span class="w">        </span><span class="sd">"""Identify and load the system nominal frequency."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">FREQUENCY_KEY</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">))</span>
 
     <span class="c1"># Define FID Cleaner</span>
     <span class="k">def</span> <span class="nf">_clean_fid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Store the 'raw' FID in a New Variable, and Clean Existing FID."""</span>
+<span class="w">        </span><span class="sd">"""Store the 'raw' FID in a New Variable, and Clean Existing FID."""</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_fid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fid</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fid</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'='</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -889,7 +889,7 @@
 
     <span class="c1"># Define Samples-Per-Cycle Evaluator</span>
     <span class="k">def</span> <span class="nf">_eval_samples_per_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Identify the Samples/Cycle Indicators, Calculate the Deltas."""</span>
+<span class="w">        </span><span class="sd">"""Identify the Samples/Cycle Indicators, Calculate the Deltas."""</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Extract the Number of Samples per Cycle, Evaluate Milliseconds</span>
             <span class="n">ms_per_cyc</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span>
@@ -905,7 +905,7 @@
 
     <span class="c1"># Define Timestamp Loader</span>
     <span class="k">def</span> <span class="nf">_eval_timestamps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""Evaluate event timestamps."""</span>
+<span class="w">        </span><span class="sd">"""Evaluate event timestamps."""</span>
         <span class="c1"># Calculate the first timestamp</span>
         <span class="n">initTimeDelta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analog_samp_timedelta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trig_row</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">trigger_time</span> <span class="o">-</span> <span class="n">initTimeDelta</span><span class="p">]</span>
@@ -916,7 +916,7 @@
 
     <span class="c1"># Define File Loader Method</span>
 <div class="viewcode-block" id="Cev.load"><a class="viewcode-back" href="../pycev.html#pycev.Cev.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">"""</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        *CEV File Loader Method*.</span>
 
 <span class="sd">        Use this method to load a CEV file, and parse its contents into the</span>
@@ -976,7 +976,7 @@
 
     <span class="c1"># Define Data Loader Method</span>
 <div class="viewcode-block" id="Cev.load_data"><a class="viewcode-back" href="../pycev.html#pycev.Cev.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">"""</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        *CEV Data Loader Method*.</span>
 
 <span class="sd">        Use this method to load the data from a CEV file which has already been</span>
@@ -1040,7 +1040,7 @@
 
     <span class="c1"># Define Method to Access the Analog Channel by Name</span>
 <div class="viewcode-block" id="Cev.get_analog"><a class="viewcode-back" href="../pycev.html#pycev.Cev.get_analog">[docs]</a>    <span class="k">def</span> <span class="nf">get_analog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">"""</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        *Extract an analog channel by name*.</span>
 
 <span class="sd">        Use this method to return the list of analog values</span>
@@ -1082,7 +1082,7 @@
 
     <span class="c1"># Define Method to Access the Digital Channel by Name</span>
 <div class="viewcode-block" id="Cev.get_status"><a class="viewcode-back" href="../pycev.html#pycev.Cev.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">"""</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        *Extract an digital channel by name*.</span>
 
 <span class="sd">        Use this method to return the list of digital values</span>
